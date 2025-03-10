@@ -5268,10 +5268,10 @@
 		(end 24.638 5.3848)
 		(stroke
 			(width 0.1)
-			(type default)
+			(type solid)
 		)
 		(fill no)
-		(layer "Margin")
+		(layer "F.CrtYd")
 		(uuid "019b7ea7-4668-4fa7-b93e-3d3494746f48")
 	)
 	(fp_line
