@@ -1,2 +1,5 @@
 3dmodels
 kicad-packages3D-master.zip
+__pycache_
+3rdparty/plugins/
+3rdparty\plugins\
