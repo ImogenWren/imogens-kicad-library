@@ -71,6 +71,9 @@ function setDarkMode(value) {
   writeStorage("darkmode", value);
   settings.darkMode = value;
   redrawIfInitDone();
+  if (initDone) {
+    populateBomTable();
+  }
 }
 
 function setShowBOMColumn(field, value) {
@@ -254,6 +257,33 @@ function createRowHighlightHandler(rowid, refs, net) {
   }
 }
 
+function updateNetColors() {
+  writeStorage("netColors", JSON.stringify(settings.netColors));
+  redrawIfInitDone();
+}
+
+function netColorChangeHandler(net) {
+  return (event) => {
+    settings.netColors[net] = event.target.value;
+    updateNetColors();
+  }
+}
+
+function netColorRightClick(net) {
+  return (event) => {
+    if (event.button == 2) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      var style = getComputedStyle(topmostdiv);
+      var defaultNetColor = style.getPropertyValue('--track-color').trim();
+      event.target.value = defaultNetColor;
+      delete settings.netColors[net];
+      updateNetColors();
+    }
+  }
+}
+
 function entryMatches(entry) {
   if (settings.bommode == "netlist") {
     // entry is just a net name
@@ -272,7 +302,7 @@ function entryMatches(entry) {
     var f = config.fields[i];
     if (!settings.hiddenColumns.includes(f)) {
       for (var ref of entry) {
-        if (pcbdata.bom.fields[ref[1]][i].toLowerCase().indexOf(filter) >= 0) {
+        if (String(pcbdata.bom.fields[ref[1]][i]).toLowerCase().indexOf(filter) >= 0) {
           return true;
         }
       }
@@ -487,12 +517,14 @@ function populateBomHeader(placeHolderColumn = null, placeHolderElements = null)
     }
   }
   if (settings.bommode == "netlist") {
-    th = createColumnHeader("Net name", "bom-netname", (a, b) => {
+    tr.appendChild(createColumnHeader("Net name", "bom-netname", (a, b) => {
       if (a > b) return -1;
       if (a < b) return 1;
       return 0;
-    });
-    tr.appendChild(th);
+    }));
+    tr.appendChild(createColumnHeader("Color", "bom-color", (a, b) => {
+      return 0;
+    }));
   } else {
     // Filter hidden columns
     var columns = settings.columnOrder.filter(e => !settings.hiddenColumns.includes(e));
@@ -561,6 +593,8 @@ function populateBomBody(placeholderColumn = null, placeHolderElements = null) {
   netsToHandler = {};
   currentHighlightedRowId = null;
   var first = true;
+  var style = getComputedStyle(topmostdiv);
+  var defaultNetColor = style.getPropertyValue('--track-color').trim();
   if (settings.bommode == "netlist") {
     bomtable = pcbdata.nets.slice();
   } else {
@@ -606,6 +640,17 @@ function populateBomBody(placeholderColumn = null, placeHolderElements = null) {
       netname = bomentry;
       td = document.createElement("TD");
       td.innerHTML = highlightFilter(netname ? netname : "&lt;no net&gt;");
+      tr.appendChild(td);
+      var color = settings.netColors[netname] || defaultNetColor;
+      td = document.createElement("TD");
+      var colorBox = document.createElement("INPUT");
+      colorBox.type = "color";
+      colorBox.value = color;
+      colorBox.onchange = netColorChangeHandler(netname);
+      colorBox.onmouseup = netColorRightClick(netname);
+      colorBox.oncontextmenu = (e) => e.preventDefault();
+      td.appendChild(colorBox);
+      td.classList.add("color-column");
       tr.appendChild(td);
     } else {
       if (reflookup) {
@@ -662,7 +707,7 @@ function populateBomBody(placeholderColumn = null, placeHolderElements = null) {
           td = document.createElement("TD");
           var output = new Array();
           for (let item of valueSet) {
-            const visible = highlightFilter(item);
+            const visible = highlightFilter(String(item));
             if (typeof item === 'string' && item.match(urlRegex)) {
               output.push(`<a href="${item}" target="_blank">${visible}</a>`);
             } else {
@@ -876,13 +921,15 @@ function changeBomLayout(layout) {
       }
       document.getElementById("frontcanvas").style.display = "none";
       document.getElementById("backcanvas").style.display = "none";
-      document.getElementById("bot").style.height = "";
+      document.getElementById("topmostdiv").style.height = "";
+      document.getElementById("topmostdiv").style.display = "block";
       break;
     case 'top-bottom':
       document.getElementById("tb-btn").classList.add("depressed");
       document.getElementById("frontcanvas").style.display = "";
       document.getElementById("backcanvas").style.display = "";
-      document.getElementById("bot").style.height = "calc(100% - 80px)";
+      document.getElementById("topmostdiv").style.height = "100%";
+      document.getElementById("topmostdiv").style.display = "flex";
       document.getElementById("bomdiv").classList.remove("split-horizontal");
       document.getElementById("canvasdiv").classList.remove("split-horizontal");
       document.getElementById("frontcanvas").classList.add("split-horizontal");
@@ -909,7 +956,8 @@ function changeBomLayout(layout) {
       document.getElementById("lr-btn").classList.add("depressed");
       document.getElementById("frontcanvas").style.display = "";
       document.getElementById("backcanvas").style.display = "";
-      document.getElementById("bot").style.height = "calc(100% - 80px)";
+      document.getElementById("topmostdiv").style.height = "100%";
+      document.getElementById("topmostdiv").style.display = "flex";
       document.getElementById("bomdiv").classList.add("split-horizontal");
       document.getElementById("canvasdiv").classList.add("split-horizontal");
       document.getElementById("frontcanvas").classList.remove("split-horizontal");
@@ -1109,7 +1157,7 @@ function updateCheckboxStats(checkbox) {
   td.lastChild.innerHTML = checked + "/" + total + " (" + Math.round(percent) + "%)";
 }
 
-function constrain(number, min, max){
+function constrain(number, min, max) {
   return Math.min(Math.max(parseInt(number), min), max);
 }
 
@@ -1135,15 +1183,15 @@ document.onkeydown = function (e) {
       break;
     case "ArrowLeft":
     case "ArrowRight":
-      if (document.activeElement.type != "text"){
+      if (document.activeElement.type != "text") {
         e.preventDefault();
         let boardRotationElement = document.getElementById("boardRotation")
         settings.boardRotation = parseInt(boardRotationElement.value);  // degrees / 5
-        if (e.key == "ArrowLeft"){
-            settings.boardRotation += 3;  // 15 degrees
+        if (e.key == "ArrowLeft") {
+          settings.boardRotation += 3;  // 15 degrees
         }
-        else{
-            settings.boardRotation -= 3;
+        else {
+          settings.boardRotation -= 3;
         }
         settings.boardRotation = constrain(settings.boardRotation, boardRotationElement.min, boardRotationElement.max);
         boardRotationElement.value = settings.boardRotation
@@ -1201,6 +1249,18 @@ function hideNetlistButton() {
   document.getElementById("bom-ungrouped-btn").classList.remove("middle-button");
   document.getElementById("bom-ungrouped-btn").classList.add("right-most-button");
   document.getElementById("bom-netlist-btn").style.display = "none";
+}
+
+function topToggle() {
+  var top = document.getElementById("top");
+  var toptoggle = document.getElementById("toptoggle");
+  if (top.style.display === "none") {
+    top.style.display = "flex";
+    toptoggle.classList.remove("flipped");
+  } else {
+    top.style.display = "none";
+    toptoggle.classList.add("flipped");
+  }
 }
 
 window.onload = function (e) {
