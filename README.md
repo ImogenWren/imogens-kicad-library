@@ -1,5 +1,5 @@
-# kicad-library-v7.0
- KiCADv7.0 Library 
+# Imogens Kicad Library
+Its so good!
  
  
  Gitignores 3dmodels folder, so any additional 3D models added by user should be added to ***3rd Party*** folder. Do not save custom shapes in 3dmodels!
