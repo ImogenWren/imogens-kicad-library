@@ -14,6 +14,7 @@ _In an *attempt* to standardise KiCAD libs, and fully integrate the design, sour
 |Footprint | Footprint that matches supplier| Package_SO:SOIC-14_3.9x8.7mm_P1.27mm |
 |Datasheet | Link to Datasheet | http://www.ti.com/lit/ds/symlink/tl071.pdf |
 |Description|Device Description |Quad Low-Noise JFET-Input Operational Amplifiers, DIP-14/SOIC-14 |
+|MFid      | Manufacturers ID |                |
 |JLCpart   | Part Number | C2915753 (example) |
 |RSpart    | Part Number | 661-0076 |
 |Farnellpart| Part Number |         |
