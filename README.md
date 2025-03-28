@@ -26,7 +26,8 @@ _In an *attempt* to standardise KiCAD libs, and fully integrate the design, sour
  
  Place repo in library folder in KiCAD folder and ensure paths point to the correct folder.
  
- ![image](https://user-images.githubusercontent.com/97303986/218597142-b3395193-c084-463d-b1ca-762e5402123e.png)
+![image](https://github.com/user-attachments/assets/e1aa89fd-407d-45fc-95b7-7d91fa923c1e)
+
  
  
  ### Color Schem
