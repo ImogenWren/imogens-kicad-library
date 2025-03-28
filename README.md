@@ -27,11 +27,11 @@ _In an *attempt* to standardise KiCAD libs, and fully integrate the design, sour
 _I often have a need to have all the available colours of LED to hand when designing. Well...here you go, now you can too_
 
 ### JLC LED Library
-| Colour 	| MF part 		| JLCpart | Basic? |
-|---		    |---			|---		|--- |
+| Colour 	| MF part 		| JLCpart | package | Basic? |
+|---		    |---			|---		|--- |---|
 |red		|BL-HUF35A-AV-TRB	|		|
 |Orange		|TJ-S2012SW8TGLC0A-A5	|		|
-|Amber		|BL-HJC36G-AV-TRB	|	0605!	|
+|Amber		|BL-HJC36G-AV-TRB	|	|0605!	|
 |Yellow		|KT-0805Y		|
 |yellow-green	|KT-0805YG		|		|
 |green		|APT2012CGCK		|	|
