@@ -22,6 +22,26 @@ _In an *attempt* to standardise KiCAD libs, and fully integrate the design, sour
 |supplier  | Link to supplier | https://uk.rs-online.com/web/p/op-amps/6610076?gb=s |
 |cost      | Price from referenced link for min order Q | £0.426 |
 
+
+## LED Sourcing
+_I often have a need to have all the available colours of LED to hand when designing. Well...here you go, now you can too_
+
+### JLC LED Library
+| Colour 	| MF part 		| Basic? |
+|---		    |---			|---		|
+|red		|BL-HUF35A-AV-TRB	|		|
+|Orange		|TJ-S2012SW8TGLC0A-A5	|		|
+|Amber		|BL-HJC36G-AV-TRB	|	0605!	|
+|Yellow		|KT-0805Y		|
+|yellow-green	|KT-0805YG		|		|
+|green		|APT2012CGCK		|	|
+|emerald	|KT-0805G		|
+|blue		|LTST-C170TBKT		|	|
+|ice-blue	|E6C0805TKAY1UDA	|		|
+|purple		|GZ2012D101TF		|	|
+|pink		|XL-2012UPC		|		|	
+|white		|KT-0805W		|	|
+
  
  ## Use
  
