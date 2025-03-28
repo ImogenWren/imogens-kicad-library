@@ -17,6 +17,7 @@ _In an *attempt* to standardise KiCAD libs, and fully integrate the design, sour
 |JLCpart   | Part Number | C2915753 (example) |
 |RSpart    | Part Number | 661-0076 |
 |Farnellpart| Part Number |         |
+|Mouserpart| Part Number |          |
 |supplier  | Link to supplier | https://uk.rs-online.com/web/p/op-amps/6610076?gb=s |
 |cost      | Price from referenced link for min order Q | £0.426 |
 
