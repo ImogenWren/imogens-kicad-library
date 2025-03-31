@@ -8175,7 +8175,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(property "Reference" "J?"
-			(at -0.635 6.985 0)
+			(at -0.635 6.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8184,7 +8184,7 @@
 			)
 		)
 		(property "Value" "XT60_60A_male"
-			(at 10.795 3.81 0)
+			(at 10.795 3.175 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8193,7 +8193,7 @@
 			)
 		)
 		(property "Footprint" "Connector_AMASS:AMASS_XT60PW-M_1x02_P7.20mm_Horizontal"
-			(at 0 -1.905 0)
+			(at 0 -2.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8211,7 +8211,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 0 0 0)
+			(at 0 -0.635 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8238,7 +8238,7 @@
 			)
 		)
 		(property "supplier" "https://www.switchelectronics.co.uk/male-xt60pw-gold-plated-connector-30a-amass"
-			(at 0 0 0)
+			(at 0 -0.635 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8247,7 +8247,7 @@
 			)
 		)
 		(property "cost" "1.52"
-			(at 0 0 0)
+			(at 0 -0.635 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8275,8 +8275,8 @@
 		)
 		(symbol "XT60_60A_male_1_1"
 			(rectangle
-				(start 0 0.762)
-				(end 0.8636 0.508)
+				(start 0 0.127)
+				(end 0.8636 -0.127)
 				(stroke
 					(width 0.1524)
 					(type default)
@@ -8286,8 +8286,8 @@
 				)
 			)
 			(rectangle
-				(start 0 -1.778)
-				(end 0.8636 -2.032)
+				(start 0 -2.413)
+				(end 0.8636 -2.667)
 				(stroke
 					(width 0.1524)
 					(type default)
@@ -8298,7 +8298,7 @@
 			)
 			(polyline
 				(pts
-					(xy 1.27 0.635) (xy 0.8636 0.635)
+					(xy 1.27 0) (xy 0.8636 0)
 				)
 				(stroke
 					(width 0.1524)
@@ -8310,7 +8310,7 @@
 			)
 			(polyline
 				(pts
-					(xy 1.27 -1.905) (xy 0.8636 -1.905)
+					(xy 1.27 -2.54) (xy 0.8636 -2.54)
 				)
 				(stroke
 					(width 0.1524)
@@ -8321,7 +8321,7 @@
 				)
 			)
 			(pin no_connect line
-				(at 2.54 -5.715 180)
+				(at 2.54 -6.35 180)
 				(length 2.54)
 				(name "S1"
 					(effects
@@ -8339,7 +8339,7 @@
 				)
 			)
 			(pin no_connect line
-				(at 2.54 -8.255 180)
+				(at 2.54 -8.89 180)
 				(length 2.54)
 				(name "S2"
 					(effects
@@ -8357,7 +8357,7 @@
 				)
 			)
 			(pin passive line
-				(at 5.08 0.635 180)
+				(at 5.08 0 180)
 				(length 3.81)
 				(name "V+"
 					(effects
@@ -8375,7 +8375,7 @@
 				)
 			)
 			(pin passive line
-				(at 5.08 -1.905 180)
+				(at 5.08 -2.54 180)
 				(length 3.81)
 				(name "V-"
 					(effects

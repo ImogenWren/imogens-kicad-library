@@ -503,7 +503,7 @@
 		)
 	)
 	(fp_text user "GND"
-		(at -6 49 0)
+		(at -5.75 49 0)
 		(unlocked yes)
 		(layer "F.SilkS")
 		(uuid "6855bde6-a6c0-4850-a636-6d4cca15d4ce")
