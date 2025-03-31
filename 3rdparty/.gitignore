@@ -93,3 +93,7 @@
 *.pyc
 /3rdparty/plugins/org_openscopeproject_InteractiveHtmlBom
 *.pyc
+*.pyc
+*.pyc
+*.schema
+*.html
