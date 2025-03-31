@@ -3884,7 +3884,7 @@
 				(justify left top)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "000_Connectors_Immo:raspbery-pi-pinheader-2x20"
 			(at 0 0 0)
 			(effects
 				(font

@@ -92,3 +92,4 @@
 3rdparty/plugins/org_openscopeproject_InteractiveHtmlBom/ecad/kicad_extra/__pycache__/xmlparser.cpython-311.pyc
 *.pyc
 /3rdparty/plugins/org_openscopeproject_InteractiveHtmlBom
+*.pyc
