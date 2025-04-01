@@ -4,7 +4,7 @@ Its so good!
 _Gitignores 3dmodels folder, so any additional 3D models added by user should be added to ***3rd Party*** folder._ Do not save custom shapes in 3dmodels!
 
 ## Guide
-_In an *attempt* to standardise KiCAD libs, and fully integrate the design, sourcing & fabrication process, each new custom or recycled part should be created with the following fields_
+_In an *attempt* to standardise KiCAD libs, and fully integrate the design, sourcing & fabrication process, each new custom or recycled part **should** be created with (at least) the following fields (only 1 source is required but alternatives are welcome_
 
 
 | Field    | Data         | Example | 
