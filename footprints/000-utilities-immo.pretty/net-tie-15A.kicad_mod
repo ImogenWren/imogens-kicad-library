@@ -1,0 +1,97 @@
+(footprint "net-tie-15A"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "Net tie, 2 pin, 0.5mm square SMD pads")
+	(tags "net tie")
+	(property "Reference" "N2"
+		(at 0 -2.5 0)
+		(layer "F.Fab")
+		(uuid "e7a32c0a-cbcd-454e-8e18-df1a3499fe0c")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "pwr_tie"
+		(at 0 0 270)
+		(layer "F.Fab")
+		(uuid "f9ce5349-24bd-471f-8371-76e7335b2230")
+		(effects
+			(font
+				(size 0.6 0.6)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 180)
+		(layer "B.Fab")
+		(hide yes)
+		(uuid "4b004655-14b0-4859-964a-60d14cc0c5e6")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 180)
+		(layer "B.Fab")
+		(hide yes)
+		(uuid "0a7e44f4-6a90-4014-af0c-2eae5f687809")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
+	(property "exclude_from_bom" ""
+		(at 313.42 -130.81 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "5df9f6ab-b36a-422b-99f6-a049d577a7f2")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr exclude_from_pos_files exclude_from_bom)
+	(net_tie_pad_groups "1, 2")
+	(fp_poly
+		(pts
+			(xy -0.492 -2.0026) (xy 0.508 -2.0026) (xy 0.508 2.0026) (xy -0.492 2.0026)
+		)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill yes)
+		(layer "F.Cu")
+		(uuid "e8d46710-7d8b-47a5-9477-1b5bcdcda71e")
+	)
+	(pad "1" smd roundrect
+		(at -0.5 0)
+		(size 1.3 4)
+		(layers "F.Cu")
+		(roundrect_rratio 0.25)
+		(uuid "041a9dc6-ed69-4cee-85f4-633f297ae58f")
+	)
+	(pad "2" smd roundrect
+		(at 0.5 0)
+		(size 1 4)
+		(layers "F.Cu")
+		(roundrect_rratio 0.25)
+		(uuid "3d6ee0f4-a42a-43ea-a732-105482f0cd75")
+	)
+	(embedded_fonts no)
+)

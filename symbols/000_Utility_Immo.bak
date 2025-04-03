@@ -39,7 +39,7 @@
     (property "Value" "pwr_tie" (id 1) (at 0 2.794 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "NetTie:NetTie-2_SMD_Pad0.5mm" (id 2) (at 0 -2.54 0)
+    (property "Footprint" "NetTie:NetTie-8-15A_1oz_2oz" (id 2) (at 0 -2.54 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (id 3) (at 0 1.27 0)

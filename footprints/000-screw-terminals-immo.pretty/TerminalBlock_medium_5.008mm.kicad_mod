@@ -11,7 +11,7 @@
 		(uuid "01b50dfc-2323-42d7-8dd9-013218a75ff2")
 		(effects
 			(font
-				(size 1 1)
+				(size 0.8 0.8)
 				(thickness 0.15)
 			)
 		)
@@ -574,7 +574,7 @@
 	)
 	(dimension
 		(type orthogonal)
-		(layer "F.Fab")
+		(layer "User.1")
 		(uuid "06a03c60-aca0-4679-91b3-0d1730b948cb")
 		(pts
 			(xy 5.08 0) (xy 5.08 -3.75)
@@ -600,7 +600,7 @@
 		)
 		(gr_text "3.75"
 			(at 11.85 -1.875 90)
-			(layer "F.Fab")
+			(layer "User.1")
 			(uuid "06a03c60-aca0-4679-91b3-0d1730b948cb")
 			(effects
 				(font
@@ -612,7 +612,7 @@
 	)
 	(dimension
 		(type orthogonal)
-		(layer "F.Fab")
+		(layer "User.1")
 		(uuid "e10150e5-8be9-489e-b16d-d6c019b9a629")
 		(pts
 			(xy 5.172 0.0915) (xy 5.172 4.75)
@@ -638,7 +638,7 @@
 		)
 		(gr_text "4.6585"
 			(at 11.85 2.42075 90)
-			(layer "F.Fab")
+			(layer "User.1")
 			(uuid "e10150e5-8be9-489e-b16d-d6c019b9a629")
 			(effects
 				(font
