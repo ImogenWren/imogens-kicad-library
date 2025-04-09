@@ -827,26 +827,28 @@
 			(hide yes)
 		)
 		(exclude_from_sim no)
-		(in_bom no)
+		(in_bom yes)
 		(on_board yes)
-		(property "Reference" "JP"
-			(at -5.715 5.08 0)
+		(property "Reference" "JP24"
+			(at 3.175 -0.7621 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
-		(property "Value" "Jumper_3_BridgeSmall"
-			(at -1.905 9.525 0)
+		(property "Value" "INB GND"
+			(at 3.175 1.7779 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
-		(property "Footprint" "Jumper:SolderJumper-3_P1.3mm_Bridged12_RoundedPad1.0x1.5mm_DoubleJoined_SMALL"
-			(at -0.254 -10.414 0)
+		(property "Footprint" "000-jumpers-immo:SolderJumper-3-bridged-hp"
+			(at 0.508 -6.604 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -863,13 +865,12 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Jumper, 3-pole, both open"
+		(property "Description" ""
 			(at 0 0 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "ki_keywords" "Jumper SPDT"
@@ -927,6 +928,18 @@
 					(type none)
 				)
 			)
+			(arc
+				(start -0.6689 -0.254)
+				(mid -1.2927 0.381)
+				(end -0.6689 1.016)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type outline)
+				)
+			)
 			(polyline
 				(pts
 					(xy -0.6463 -0.254) (xy -0.6463 1.016)
@@ -937,18 +950,6 @@
 				)
 				(fill
 					(type none)
-				)
-			)
-			(arc
-				(start -0.6463 -0.254)
-				(mid -1.2701 0.381)
-				(end -0.6463 1.016)
-				(stroke
-					(width 0)
-					(type default)
-				)
-				(fill
-					(type outline)
 				)
 			)
 			(rectangle
@@ -987,9 +988,9 @@
 				)
 			)
 			(arc
-				(start 0.6463 1.016)
-				(mid 1.2701 0.381)
-				(end 0.6463 -0.254)
+				(start 0.6689 1.016)
+				(mid 1.2927 0.381)
+				(end 0.6689 -0.254)
 				(stroke
 					(width 0)
 					(type default)
@@ -2163,18 +2164,18 @@
 			(hide yes)
 		)
 		(exclude_from_sim no)
-		(in_bom no)
+		(in_bom yes)
 		(on_board yes)
-		(property "Reference" "JP"
-			(at -5.715 5.08 0)
+		(property "Reference" "JP20"
+			(at 8.255 0.127 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "Jumper_3_Open3small"
-			(at -1.905 9.525 0)
+		(property "Value" "LC Vsup"
+			(at 5.715 0.127 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2182,7 +2183,7 @@
 			)
 		)
 		(property "Footprint" "Jumper:SolderJumper-3_P1.3mm_Open_RoundedPad1.0x1.5mm_NumberLabels"
-			(at 0.762 -9.906 0)
+			(at -0.254 -12.192 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2191,7 +2192,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 7.62 3.556 0)
+			(at 7.62 3.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2199,13 +2200,12 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Jumper, 3-pole, both open"
+		(property "Description" ""
 			(at 0 0 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "ki_keywords" "Jumper SPDT"
@@ -2229,7 +2229,7 @@
 		(symbol "Jumper_3_Open3small_0_1"
 			(polyline
 				(pts
-					(xy -2.54 -0.254) (xy -2.54 -0.889)
+					(xy -2.54 0) (xy -2.54 -0.635)
 				)
 				(stroke
 					(width 0)
@@ -2241,19 +2241,7 @@
 			)
 			(polyline
 				(pts
-					(xy -2.54 -0.254) (xy -1.27 -0.254)
-				)
-				(stroke
-					(width 0)
-					(type default)
-				)
-				(fill
-					(type none)
-				)
-			)
-			(polyline
-				(pts
-					(xy -0.6463 -0.889) (xy -0.6463 0.381)
+					(xy -2.54 0) (xy -1.27 0)
 				)
 				(stroke
 					(width 0)
@@ -2264,20 +2252,32 @@
 				)
 			)
 			(arc
-				(start -0.6463 -0.889)
-				(mid -1.2701 -0.254)
-				(end -0.6463 0.381)
+				(start -0.6689 -0.635)
+				(mid -1.2927 0)
+				(end -0.6689 0.635)
 				(stroke
 					(width 0)
 					(type default)
 				)
 				(fill
 					(type outline)
+				)
+			)
+			(polyline
+				(pts
+					(xy -0.6463 -0.635) (xy -0.6463 0.635)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
 				)
 			)
 			(rectangle
-				(start -0.254 0.381)
-				(end 0.254 -0.889)
+				(start -0.254 0.635)
+				(end 0.254 -0.635)
 				(stroke
 					(width 0)
 					(type default)
@@ -2288,7 +2288,7 @@
 			)
 			(polyline
 				(pts
-					(xy 0 0.635) (xy 0 -0.127)
+					(xy 0 0.889) (xy 0 0.127)
 				)
 				(stroke
 					(width 0)
@@ -2300,7 +2300,7 @@
 			)
 			(polyline
 				(pts
-					(xy 0.635 0.381) (xy 0.635 -0.889)
+					(xy 0.635 0.635) (xy 0.635 -0.635)
 				)
 				(stroke
 					(width 0)
@@ -2311,9 +2311,9 @@
 				)
 			)
 			(arc
-				(start 0.6463 0.381)
-				(mid 1.2701 -0.254)
-				(end 0.6463 -0.889)
+				(start 0.6689 0.635)
+				(mid 1.2927 0)
+				(end 0.6689 -0.635)
 				(stroke
 					(width 0)
 					(type default)
@@ -2324,7 +2324,7 @@
 			)
 			(polyline
 				(pts
-					(xy 1.27 -0.254) (xy 2.54 -0.254)
+					(xy 1.27 0) (xy 2.54 0)
 				)
 				(stroke
 					(width 0)
@@ -2336,7 +2336,7 @@
 			)
 			(polyline
 				(pts
-					(xy 2.54 -0.254) (xy 2.54 -0.889)
+					(xy 2.54 0) (xy 2.54 -0.635)
 				)
 				(stroke
 					(width 0)
@@ -2349,7 +2349,7 @@
 		)
 		(symbol "Jumper_3_Open3small_1_1"
 			(pin passive line
-				(at -2.54 -3.175 90)
+				(at -2.54 -2.921 90)
 				(length 2.54)
 				(name "A"
 					(effects
@@ -2367,7 +2367,7 @@
 				)
 			)
 			(pin input line
-				(at 0 2.54 270)
+				(at 0 2.794 270)
 				(length 2.54)
 				(name "C"
 					(effects
@@ -2385,7 +2385,7 @@
 				)
 			)
 			(pin passive line
-				(at 2.54 -3.175 90)
+				(at 2.54 -2.921 90)
 				(length 2.54)
 				(name "B"
 					(effects
