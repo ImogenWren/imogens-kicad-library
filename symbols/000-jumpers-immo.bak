@@ -524,7 +524,7 @@
 		(in_bom no)
 		(on_board yes)
 		(property "Reference" "JP"
-			(at 0 2.794 0)
+			(at 0.635 2.794 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -558,7 +558,7 @@
 			)
 		)
 		(property "Description" "Jumper, 2-pole, open"
-			(at 0 0 0)
+			(at 0 -3.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -587,30 +587,6 @@
 		(symbol "Jumper_2_Open_small_0_1"
 			(polyline
 				(pts
-					(xy -0.635 0.635) (xy -0.635 -0.635)
-				)
-				(stroke
-					(width 0)
-					(type default)
-				)
-				(fill
-					(type none)
-				)
-			)
-			(arc
-				(start -0.6463 -0.635)
-				(mid -1.2659 0.0056)
-				(end -0.635 0.635)
-				(stroke
-					(width 0)
-					(type default)
-				)
-				(fill
-					(type outline)
-				)
-			)
-			(polyline
-				(pts
 					(xy 0 0.635) (xy 0 -0.635)
 				)
 				(stroke
@@ -622,9 +598,33 @@
 				)
 			)
 			(arc
-				(start 0.0155 0.6349)
-				(mid 0.6351 -0.0057)
-				(end 0.0042 -0.6351)
+				(start -0.0113 -0.635)
+				(mid -0.6309 0.0056)
+				(end 0 0.635)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type outline)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0.635 0.635) (xy 0.635 -0.635)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(arc
+				(start 0.6505 0.6349)
+				(mid 1.2701 -0.0057)
+				(end 0.6392 -0.6351)
 				(stroke
 					(width 0)
 					(type default)
@@ -636,7 +636,7 @@
 		)
 		(symbol "Jumper_2_Open_small_1_1"
 			(pin passive line
-				(at -3.175 0 0)
+				(at -2.54 0 0)
 				(length 2.54)
 				(name "A"
 					(effects
@@ -654,7 +654,7 @@
 				)
 			)
 			(pin passive line
-				(at 2.54 0 180)
+				(at 3.175 0 180)
 				(length 2.54)
 				(name "B"
 					(effects
@@ -847,7 +847,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "000-jumpers-immo:SolderJumper-3_P2mm_Open_RoundedPad1.0x1.5mm_NumberLabels_1"
+		(property "Footprint" "000-jumpers-immo:SolderJumper-3-bridged-hp"
 			(at 0.508 -6.604 0)
 			(effects
 				(font

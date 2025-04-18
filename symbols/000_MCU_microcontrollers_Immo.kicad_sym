@@ -1477,7 +1477,7 @@
 			(pin bidirectional line
 				(at 12.7 -10.16 180)
 				(length 2.54)
-				(name "A4"
+				(name "A4_SDA"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -1495,7 +1495,7 @@
 			(pin bidirectional line
 				(at 12.7 -12.7 180)
 				(length 2.54)
-				(name "A5"
+				(name "A5_SCL"
 					(effects
 						(font
 							(size 1.27 1.27)
