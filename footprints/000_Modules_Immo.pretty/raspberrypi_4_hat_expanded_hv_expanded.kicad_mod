@@ -1,4 +1,4 @@
-(footprint "raspberrypi_4_hat_expanded_hv"
+(footprint "raspberrypi_4_hat_expanded_hv_expanded"
 	(version 20241229)
 	(generator "pcbnew")
 	(generator_version "9.0")
@@ -618,8 +618,8 @@
 		(uuid "11f722e7-919e-4939-8fed-ee4e014d2fec")
 	)
 	(fp_line
-		(start -42.9 59.6)
-		(end -42.9 0)
+		(start -46.521067 61.498866)
+		(end -46.501134 -0.001134)
 		(stroke
 			(width 0.2)
 			(type default)
@@ -628,7 +628,7 @@
 		(uuid "a3114fca-43ee-4552-8acf-53ed5d2c629e")
 	)
 	(fp_line
-		(start -39.4 -3.5)
+		(start -43.001134 -3.5)
 		(end 29.9 -3.5)
 		(stroke
 			(width 0.2)
@@ -648,8 +648,8 @@
 		(uuid "71122167-f589-4e01-968e-358e77f32c1e")
 	)
 	(fp_line
-		(start 33.85 63.1)
-		(end -39.4 63.1)
+		(start 33.85 65)
+		(end -43.021067 65)
 		(stroke
 			(width 0.2)
 			(type default)
@@ -669,7 +669,7 @@
 	)
 	(fp_line
 		(start 37.35 18.65)
-		(end 37.35 59.6)
+		(end 37.35 61.5)
 		(stroke
 			(width 0.2)
 			(type default)
@@ -678,26 +678,26 @@
 		(uuid "45fed497-df4e-4511-9372-ec8d3becbaab")
 	)
 	(fp_arc
-		(start -42.9 0)
-		(mid -41.874874 -2.474874)
-		(end -39.4 -3.5)
+		(start -46.501134 -0.001134)
+		(mid -45.475607 -2.475275)
+		(end -43.001134 -3.5)
 		(stroke
 			(width 0.2)
 			(type default)
 		)
 		(layer "Edge.Cuts")
-		(uuid "461d7c78-62cd-4fef-9c3f-301b122aa98c")
+		(uuid "24385b40-4fc3-4f22-bff3-1fc2e3920eb6")
 	)
 	(fp_arc
-		(start -39.4 63.1)
-		(mid -41.874874 62.074874)
-		(end -42.9 59.6)
+		(start -43.021067 65)
+		(mid -45.496342 63.974473)
+		(end -46.521067 61.498866)
 		(stroke
 			(width 0.2)
 			(type default)
 		)
 		(layer "Edge.Cuts")
-		(uuid "cf21c3e9-f8b8-4209-bb28-5e14f92fc2e2")
+		(uuid "31bc10a1-7369-4d5b-9084-978fb52e707f")
 	)
 	(fp_arc
 		(start 29.9 -3.5)
@@ -711,15 +711,15 @@
 		(uuid "01d6931a-d20c-420e-9960-bc6fb64c413e")
 	)
 	(fp_arc
-		(start 37.35 59.6)
-		(mid 36.324874 62.074874)
-		(end 33.85 63.1)
+		(start 37.35 61.5)
+		(mid 36.324874 63.974874)
+		(end 33.85 65)
 		(stroke
 			(width 0.2)
 			(type default)
 		)
 		(layer "Edge.Cuts")
-		(uuid "029ba0de-2b86-4fd9-811e-b81240254c1e")
+		(uuid "b61bf258-8758-4bda-9a76-259a66512614")
 	)
 	(fp_line
 		(start -25.4 -2.54)

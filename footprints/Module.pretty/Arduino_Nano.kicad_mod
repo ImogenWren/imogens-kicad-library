@@ -365,7 +365,7 @@
 	(fp_text user "USB"
 		(at 7.62 35.56 0)
 		(unlocked yes)
-		(layer "F.SilkS")
+		(layer "F.Fab")
 		(uuid "6feafc17-7d53-4649-8163-ed94377f1f70")
 		(effects
 			(font
