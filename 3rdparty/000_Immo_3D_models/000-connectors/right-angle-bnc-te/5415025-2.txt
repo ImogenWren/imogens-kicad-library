@@ -1,0 +1,14 @@
+﻿"Symbol";"Value";"Unit";
+"SUPPLIER_NAME";"RS Components";"";
+"TraceParts.PartVersion";"1.0.7";"";
+"SUPPLIER";"TE Connectivity";"";
+"TraceParts.PartNumber";"10-26082019-082687";"";
+"TraceParts.PartLanguage";"en";"";
+"DESIGN";"TE Connectivity Right Angle 50Ω PCB Mount Bulkhead Fitting BNC Connector, jack, Tin, Through Hole Termination";"";
+"TraceParts.InstanceId";"10-26082019-08268763IIWV2ZXB3P1HIJPW1M29RKU";"";
+"TraceParts.PartTitle";"TE Connectivity Right Angle 50Ω PCB Mount Bulkhead Fitting BNC Connector, jack, Tin, Through Hole Termination";"";
+"REFERENCE";"5415025-2";"";
+"Buy_Now";"https://uk.rs-online.com/web/p/products/7825590?cm_mmc=en-ds-_-mcad-_-traceparts-_-7825590'";"";
+"TRACEPARTS";"TRACEPARTS";"";
+"rs_stock_number";"7825590";"";
+"allied_stock_number";"70041960";"";

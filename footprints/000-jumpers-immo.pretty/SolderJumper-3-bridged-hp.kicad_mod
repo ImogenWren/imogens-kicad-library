@@ -54,9 +54,9 @@
 	(attr exclude_from_pos_files exclude_from_bom)
 	(fp_rect
 		(start -0.8 -0.2)
-		(end -0.5 0.2)
+		(end -0.45 0.2)
 		(stroke
-			(width 0.2)
+			(width 0)
 			(type default)
 		)
 		(fill yes)
@@ -65,9 +65,9 @@
 	)
 	(fp_rect
 		(start 0.45 -0.2)
-		(end 0.75 0.2)
+		(end 0.8 0.2)
 		(stroke
-			(width 0.2)
+			(width 0)
 			(type default)
 		)
 		(fill yes)
