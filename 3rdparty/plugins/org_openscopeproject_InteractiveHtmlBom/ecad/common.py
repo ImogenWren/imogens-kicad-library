@@ -43,7 +43,6 @@ class EcadParser(object):
         by_ref = {r: remap(d) for (r, d) in data.fields_by_ref.items()}
         if data.fields_by_index:
             by_index = {i: remap(d) for (i, d) in data.fields_by_index.items()}
-            print([a.get("blah", "") for a in by_index.values()])
         else:
             by_index = None
 
@@ -123,10 +122,10 @@ class EcadParser(object):
                 a1 = drawing['startangle']
                 a2 = drawing['endangle']
                 r = drawing['radius']
-                x1 = xc + math.cos(math.radians(a1))
-                y1 = xc + math.sin(math.radians(a1))
-                x2 = xc + math.cos(math.radians(a2))
-                y2 = xc + math.sin(math.radians(a2))
+                x1 = xc + r * math.cos(math.radians(a1))
+                y1 = yc + r * math.sin(math.radians(a1))
+                x2 = xc + r * math.cos(math.radians(a2))
+                y2 = yc + r * math.sin(math.radians(a2))
                 da = a2 - a1 if a2 > a1 else a2 + 360 - a1
                 la = 1 if da > 180 else 0
                 svgpath = 'M %s %s A %s %s 0 %s 1 %s %s' % \

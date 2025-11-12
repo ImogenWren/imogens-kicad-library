@@ -899,6 +899,15 @@
 				(hide yes)
 			)
 		)
+		(property "note" "Note: IC DOES NOT MATCH footprint - Pins 1&2 are Merged into Pin 1 - Pins 3&4 are Merged into Pin 2 - Schem symbol updated to match"
+			(at 28.956 -22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(property "ki_keywords" "hall effect current monitor sensor isolated"
 			(at 0 0 0)
 			(effects
@@ -955,15 +964,6 @@
 			)
 		)
 		(symbol "ACS70331_1_1"
-			(text "Note: IC DOES NOT MATCH footprint\n- Pins 1&2 are Merged into Pin 1\n- Pins 3&4 are Merged into Pin 2\n- Schem symbol updated to match"
-				(at 11.43 -5.334 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
 			(pin passive line
 				(at -11.43 6.35 0)
 				(length 2.54)
@@ -1173,6 +1173,183 @@
 					)
 				)
 				(number "10"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+	(symbol "AL8860"
+		(pin_names
+			(offset 0.254)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "U"
+			(at -5.08 4.318 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "AL8860"
+			(at -1.016 4.318 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:TSOT-23-5"
+			(at 39.624 10.668 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://cdn.sparkfun.com/assets/5/9/8/e/4/AL8860.pdf"
+			(at 52.324 7.874 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "hysteresis mode DC-DC step-down converter, designed for driving single or multiple series connected LED"
+			(at 87.884 -12.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_keywords" "LED driver"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_fp_filters" "TSOT?23*"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "AL8860_0_1"
+			(rectangle
+				(start -5.08 3.175)
+				(end 5.08 -10.16)
+				(stroke
+					(width 0.254)
+					(type solid)
+				)
+				(fill
+					(type background)
+				)
+			)
+		)
+		(symbol "AL8860_1_1"
+			(pin power_out line
+				(at -7.62 0 0)
+				(length 2.54)
+				(name "SW"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin power_in line
+				(at -7.62 -3.81 0)
+				(length 2.54)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin input line
+				(at -7.62 -7.62 0)
+				(length 2.54)
+				(name "CTRL"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin power_in line
+				(at 7.62 0 180)
+				(length 2.54)
+				(name "VIN"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "5"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin power_out line
+				(at 7.62 -7.62 180)
+				(length 2.54)
+				(name "SET"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "3"
 					(effects
 						(font
 							(size 1.27 1.27)

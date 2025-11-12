@@ -1,0 +1,125 @@
+(footprint "remote-labs-portal-sn-block"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(property "Reference" "G***"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "b0ec9a52-2c2c-409d-9c61-17281598b5c2")
+		(effects
+			(font
+				(size 1.524 1.524)
+				(thickness 0.3)
+			)
+		)
+	)
+	(property "Value" "LOGO"
+		(at 0.75 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "4cc27aea-3ed5-41c3-8ad1-8121f72249af")
+		(effects
+			(font
+				(size 1.524 1.524)
+				(thickness 0.3)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "ea430144-7190-4eb5-a1c2-1ee4dd6fa82a")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "6ee604e0-70f7-4ad6-94ea-3091fcedb88e")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr board_only exclude_from_pos_files exclude_from_bom)
+	(fp_rect
+		(start -20.32 3.81)
+		(end 10.16 8.89)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(fill yes)
+		(layer "F.SilkS")
+		(uuid "595bdab6-ba8a-4700-9eb8-f97598911c46")
+	)
+	(fp_rect
+		(start -20.32 12.7)
+		(end 10.16 17.78)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(fill yes)
+		(layer "F.SilkS")
+		(uuid "fc8ef582-d94b-41f3-8148-7423ec8b9f2e")
+	)
+	(fp_rect
+		(start -20.16 -5.08)
+		(end 10.16 0)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(fill yes)
+		(layer "F.SilkS")
+		(uuid "20194246-20e6-4817-bebf-2d40fda41fa7")
+	)
+	(fp_text user "Assembled By:"
+		(at -12.190742 11.546707 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "1abd096f-fd04-4cff-a99e-ecd570135712")
+		(effects
+			(font
+				(size 1.5 1.5)
+				(thickness 0.25)
+			)
+		)
+	)
+	(fp_text user "PCB S/N:"
+		(at -15.24 -6.35 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "73277fbb-1b08-4d33-9c5b-5325484342f3")
+		(effects
+			(font
+				(size 1.5 1.5)
+				(thickness 0.25)
+			)
+		)
+	)
+	(fp_text user "DOM:"
+		(at -17.78 2.54 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "c84e2900-b7ec-460d-a445-a7a49231dc91")
+		(effects
+			(font
+				(size 1.5 1.5)
+				(thickness 0.25)
+			)
+		)
+	)
+	(embedded_fonts no)
+)

@@ -11,6 +11,18 @@ from ..core.config import Config
 from ..core.fontparser import FontParser
 
 
+KICAD_VERSION = [5, 1, 0]
+
+if hasattr(pcbnew, 'Version'):
+    version = pcbnew.Version().split('.')
+    try:
+        for i in range(len(version)):
+            version[i] = int(version[i].split('-')[0])
+    except ValueError:
+        pass
+    KICAD_VERSION = version
+
+
 class PcbnewParser(EcadParser):
 
     def __init__(self, file_name, config, logger, board=None):
@@ -19,9 +31,9 @@ class PcbnewParser(EcadParser):
         if self.board is None:
             self.board = pcbnew.LoadBoard(self.file_name)  # type: pcbnew.BOARD
         if hasattr(self.board, 'GetModules'):
-            self.footprints = list(self.board.GetModules())
+            self.footprints = list(self.board.GetModules())  # type: list[pcbnew.MODULE]
         else:
-            self.footprints = list(self.board.GetFootprints())
+            self.footprints = list(self.board.GetFootprints())  # type: list[pcbnew.FOOTPRINT]
         self.font_parser = FontParser()
 
     def get_extra_field_data(self, file_name):
@@ -109,7 +121,7 @@ class PcbnewParser(EcadParser):
         return round(a1, 2), round(a2, 2)
 
     def parse_shape(self, d):
-        # type: (pcbnew.PCB_SHAPE) -> dict or None
+        # type: (pcbnew.PCB_SHAPE) -> dict | None
         shape = {
             pcbnew.S_SEGMENT: "segment",
             pcbnew.S_CIRCLE: "circle",
@@ -189,7 +201,7 @@ class PcbnewParser(EcadParser):
                 parent_footprint = d.GetParentModule()
             else:
                 parent_footprint = d.GetParentFootprint()
-            if parent_footprint is not None:
+            if parent_footprint is not None and KICAD_VERSION[0] < 8:
                 angle = self.normalize_angle(parent_footprint.GetOrientation())
             shape_dict = {
                 "type": shape,
@@ -413,18 +425,55 @@ class PcbnewParser(EcadParser):
             drawings.append(("val", f.Value()))
             for d in f.GraphicalItems():
                 drawings.append((d.GetClass(), d))
+            if hasattr(f, "GetFields"):
+                fields = f.GetFields() # type: list[pcbnew.PCB_FIELD]
+                for field in fields:
+                    if field.IsReference() or field.IsValue():
+                        continue
+                    drawings.append((field.GetClass(), field))
+
         return drawings
 
     def parse_pad(self, pad):
-        # type: (pcbnew.PAD) -> dict or None
-        layers_set = list(pad.GetLayerSet().Seq())
+        # type: (pcbnew.PAD) -> list[dict]
+        custom_padstack = False
+        outer_layers = [(pcbnew.F_Cu, "F"), (pcbnew.B_Cu, "B")]
+        if hasattr(pad, 'Padstack'):
+            padstack = pad.Padstack() # type: pcbnew.PADSTACK
+            layers_set = list(padstack.LayerSet().Seq())
+            custom_padstack = (
+                padstack.Mode() != padstack.MODE_NORMAL or \
+                    padstack.UnconnectedLayerMode() == padstack.UNCONNECTED_LAYER_MODE_REMOVE_ALL
+            )
+        else:
+            layers_set = list(pad.GetLayerSet().Seq())
         layers = []
-        if pcbnew.F_Cu in layers_set:
-            layers.append("F")
-        if pcbnew.B_Cu in layers_set:
-            layers.append("B")
+        for layer, letter in outer_layers:
+            if layer in layers_set:
+                layers.append(letter)
+        if not layers:
+            return []
+
+        if custom_padstack:
+            pads = []
+            for layer, letter in outer_layers:
+                if layer in layers_set and pad.FlashLayer(layer):
+                    pad_dict = self.parse_pad_layer(pad, layer)
+                    pad_dict["layers"] = [letter]
+                    pads.append(pad_dict)
+            return pads
+        else:
+            pad_dict = self.parse_pad_layer(pad, layers_set[0])
+            pad_dict["layers"] = layers
+            return [pad_dict]
+
+    def parse_pad_layer(self, pad, layer):
+        # type: (pcbnew.PAD, int) -> dict | None
         pos = self.normalize(pad.GetPosition())
-        size = self.normalize(pad.GetSize())
+        try:
+            size = self.normalize(pad.GetSize(layer))
+        except TypeError:
+            size = self.normalize(pad.GetSize())
         angle = self.normalize_angle(pad.GetOrientation())
         shape_lookup = {
             pcbnew.PAD_SHAPE_RECT: "rect",
@@ -439,27 +488,36 @@ class PcbnewParser(EcadParser):
             shape_lookup[pcbnew.PAD_SHAPE_CUSTOM] = "custom"
         if hasattr(pcbnew, "PAD_SHAPE_CHAMFERED_RECT"):
             shape_lookup[pcbnew.PAD_SHAPE_CHAMFERED_RECT] = "chamfrect"
-        shape = shape_lookup.get(pad.GetShape(), "")
+        try:
+            pad_shape = pad.GetShape(layer)
+        except TypeError:
+            pad_shape = pad.GetShape()
+        shape = shape_lookup.get(pad_shape, "")
         if shape == "":
-            self.logger.info("Unsupported pad shape %s, skipping.",
-                             pad.GetShape())
+            self.logger.info("Unsupported pad shape %s, skipping.", pad_shape)
             return None
         pad_dict = {
-            "layers": layers,
             "pos": pos,
             "size": size,
             "angle": angle,
             "shape": shape
         }
         if shape == "custom":
-            polygon_set = pad.GetCustomShapeAsPolygon()
+            polygon_set = pcbnew.SHAPE_POLY_SET()
+            try:
+                pad.MergePrimitivesAsPolygon(layer, polygon_set)
+            except TypeError:
+                pad.MergePrimitivesAsPolygon(polygon_set)
             if polygon_set.HasHoles():
                 self.logger.warn('Detected holes in custom pad polygons')
             pad_dict["polygons"] = self.parse_poly_set(polygon_set)
         if shape == "trapezoid":
             # treat trapezoid as custom shape
             pad_dict["shape"] = "custom"
-            delta = self.normalize(pad.GetDelta())
+            try:
+                delta = self.normalize(pad.GetDelta(layer))
+            except TypeError:
+                delta = self.normalize(pad.GetDelta())
             pad_dict["polygons"] = [[
                 [size[0] / 2 + delta[1] / 2, size[1] / 2 - delta[0] / 2],
                 [-size[0] / 2 - delta[1] / 2, size[1] / 2 + delta[0] / 2],
@@ -468,10 +526,17 @@ class PcbnewParser(EcadParser):
             ]]
 
         if shape in ["roundrect", "chamfrect"]:
-            pad_dict["radius"] = pad.GetRoundRectCornerRadius() * 1e-6
+            try:
+                pad_dict["radius"] = pad.GetRoundRectCornerRadius(layer) * 1e-6
+            except TypeError:
+                pad_dict["radius"] = pad.GetRoundRectCornerRadius() * 1e-6
         if shape == "chamfrect":
-            pad_dict["chamfpos"] = pad.GetChamferPositions()
-            pad_dict["chamfratio"] = pad.GetChamferRectRatio()
+            try:
+                pad_dict["chamfpos"] = pad.GetChamferPositions(layer)
+                pad_dict["chamfratio"] = pad.GetChamferRectRatio(layer)
+            except TypeError:
+                pad_dict["chamfpos"] = pad.GetChamferPositions()
+                pad_dict["chamfratio"] = pad.GetChamferRectRatio()
         if hasattr(pcbnew, 'PAD_ATTRIB_PTH'):
             through_hole_attributes = [pcbnew.PAD_ATTRIB_PTH,
                                        pcbnew.PAD_ATTRIB_NPTH]
@@ -488,7 +553,10 @@ class PcbnewParser(EcadParser):
         else:
             pad_dict["type"] = "smd"
         if hasattr(pad, "GetOffset"):
-            pad_dict["offset"] = self.normalize(pad.GetOffset())
+            try:
+                pad_dict["offset"] = self.normalize(pad.GetOffset(layer))
+            except TypeError:
+                pad_dict["offset"] = self.normalize(pad.GetOffset())
         if self.config.include_nets:
             pad_dict["net"] = pad.GetNetname()
 
@@ -497,7 +565,7 @@ class PcbnewParser(EcadParser):
     def parse_footprints(self):
         # type: () -> list
         footprints = []
-        for f in self.footprints:  # type: pcbnew.FOOTPRINT
+        for f in self.footprints:
             ref = f.GetReference()
 
             # bounding box
@@ -516,7 +584,10 @@ class PcbnewParser(EcadParser):
             if hasattr(f_copy, 'GetFootprintRect'):
                 footprint_rect = f_copy.GetFootprintRect()
             else:
-                footprint_rect = f_copy.GetBoundingBox(False, False)
+                try:
+                    footprint_rect = f_copy.GetBoundingBox(False, False)
+                except TypeError:
+                    footprint_rect = f_copy.GetBoundingBox(False)
             bbox = {
                 "pos": self.normalize(f.GetPosition()),
                 "relpos": self.normalize(footprint_rect.GetPosition()),
@@ -539,8 +610,7 @@ class PcbnewParser(EcadParser):
             # footprint pads
             pads = []
             for p in f.Pads():
-                pad_dict = self.parse_pad(p)
-                if pad_dict is not None:
+                for pad_dict in self.parse_pad(p):
                     pads.append((p.GetPadName(), pad_dict))
 
             if pads:
@@ -619,8 +689,9 @@ class PcbnewParser(EcadParser):
         }
 
     def parse_zones(self, zones):
+        # type: (list[pcbnew.ZONE]) -> dict
         result = {pcbnew.F_Cu: [], pcbnew.B_Cu: []}
-        for zone in zones:  # type: pcbnew.ZONE
+        for zone in zones:
             if (not zone.IsFilled() or
                     hasattr(zone, 'GetIsKeepout') and zone.GetIsKeepout() or
                     hasattr(zone, 'GetIsRuleArea') and zone.GetIsRuleArea()):
