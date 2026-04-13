@@ -2344,6 +2344,14 @@
 				(hide yes)
 			)
 		)
+		(property "name" "name"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(property "ki_keywords" "LED diode"
 			(at 0 0 0)
 			(effects
@@ -2534,6 +2542,14 @@
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "name" "name"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(property "ki_keywords" "LED diode"

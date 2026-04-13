@@ -204,7 +204,7 @@
 			)
 		)
 		(property "Value" "one-way-select"
-			(at 3.81 4.826 0)
+			(at 3.4925 5.1435 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -258,8 +258,8 @@
 		)
 		(symbol "one-way-select_1_1"
 			(rectangle
-				(start -1.905 3.81)
-				(end 2.54 -0.635)
+				(start -2.2225 4.1275)
+				(end 2.2225 -0.3175)
 				(stroke
 					(width 0)
 					(type solid)
@@ -270,8 +270,8 @@
 				)
 			)
 			(rectangle
-				(start -1.27 3.81)
-				(end 1.905 1.905)
+				(start -1.5875 4.1275)
+				(end 1.5875 2.2225)
 				(stroke
 					(width 0)
 					(type solid)
@@ -283,7 +283,7 @@
 			)
 			(polyline
 				(pts
-					(xy -0.9525 2.2225) (xy -0.9525 2.6289)
+					(xy -1.27 2.54) (xy -1.27 2.9464)
 				)
 				(stroke
 					(width 0.1524)
@@ -294,8 +294,8 @@
 				)
 			)
 			(rectangle
-				(start -0.8255 2.6289)
-				(end -1.0795 3.4925)
+				(start -1.143 2.9464)
+				(end -1.397 3.81)
 				(stroke
 					(width 0.1524)
 					(type default)
@@ -306,7 +306,7 @@
 			)
 			(polyline
 				(pts
-					(xy 1.5875 2.2225) (xy 1.5875 2.6289)
+					(xy 1.27 2.54) (xy 1.27 2.9464)
 				)
 				(stroke
 					(width 0.1524)
@@ -317,8 +317,8 @@
 				)
 			)
 			(rectangle
-				(start 1.7145 2.6289)
-				(end 1.4605 3.4925)
+				(start 1.397 2.9464)
+				(end 1.143 3.81)
 				(stroke
 					(width 0.1524)
 					(type default)
@@ -328,7 +328,7 @@
 				)
 			)
 			(pin passive line
-				(at -0.9525 -1.5875 90)
+				(at -1.27 -1.27 90)
 				(length 3.81)
 				(name "Pin_2"
 					(effects
@@ -346,7 +346,7 @@
 				)
 			)
 			(pin passive line
-				(at 1.5875 -1.5875 90)
+				(at 1.27 -1.27 90)
 				(length 3.81)
 				(name "Pin_1"
 					(effects

@@ -13,14 +13,6 @@
 		(in_bom yes)
 		(on_board yes)
 		(property "Reference" "R_{shunt}1"
-			(at -0.254 -2.286 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "0.22r/5W"
 			(at -0.254 2.54 0)
 			(effects
 				(font
@@ -28,7 +20,15 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal"
+		(property "Value" "0.22r/5W"
+			(at -0.254 -2.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_THT:R_Radial_Power_L13.0mm_W9.0mm_P5.00mm"
 			(at 0 -1.778 0)
 			(effects
 				(font

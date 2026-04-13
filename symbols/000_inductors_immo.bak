@@ -3,12 +3,8 @@
 	(generator "kicad_symbol_editor")
 	(generator_version "9.0")
 	(symbol "3-phase-generator"
-		(pin_numbers
-			(hide yes)
-		)
 		(pin_names
 			(offset 1.016)
-			(hide yes)
 		)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -270,7 +266,7 @@
 		(symbol "3-phase-generator_1_1"
 			(polyline
 				(pts
-					(xy -5.08 3.81) (xy -4.064 3.048)
+					(xy -3.81 3.81) (xy -3.81 3.302)
 				)
 				(stroke
 					(width 0)
@@ -304,9 +300,9 @@
 				)
 			)
 			(pin passive line
-				(at -5.08 5.08 270)
-				(length 1.27)
-				(name "1"
+				(at -3.81 6.35 270)
+				(length 2.54)
+				(name "M1"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -322,9 +318,27 @@
 				)
 			)
 			(pin passive line
-				(at 0 -6.35 90)
-				(length 1.27)
-				(name "2"
+				(at 0 -7.62 90)
+				(length 2.54)
+				(name "M3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 3.81 6.35 270)
+				(length 2.54)
+				(name "M2"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -332,24 +346,6 @@
 					)
 				)
 				(number "2"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at 3.81 5.08 270)
-				(length 1.27)
-				(name "1"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "1"
 					(effects
 						(font
 							(size 1.27 1.27)

@@ -25,7 +25,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Inductor_SMD:L_12x12mm_H8mm"
+		(property "Footprint" "000-screw-terminals-immo:TerminalBlock_01_03_medium_5.008mm"
 			(at -0.508 -15.748 0)
 			(effects
 				(font

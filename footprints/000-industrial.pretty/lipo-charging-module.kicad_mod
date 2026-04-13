@@ -1,0 +1,236 @@
+(footprint "lipo-charging-module"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "4-Lead Plastic Small Outline (SO), see https://docs.broadcom.com/docs/AV02-0173EN")
+	(tags "SO SOIC 2.54")
+	(property "Reference" "REF**"
+		(at -5.08 -5.08 0)
+		(layer "F.SilkS")
+		(uuid "bdb0d144-dc0f-45c8-860b-534d2eae2728")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "lipo-charging-module"
+		(at -0.635 -3.81 0)
+		(layer "F.Fab")
+		(uuid "1cd79e91-07b9-4a25-9f46-465fbdd3ac92")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "d0481ac7-4035-4fd3-bfb8-94044681df5f")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "0916828e-080f-4dc0-8175-5a0d55e53c8a")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_rect
+		(start -15.24 -1.27)
+		(end -11.43 5.08)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "44fe0094-aab5-4f4d-864f-47fbe943a816")
+	)
+	(fp_rect
+		(start -13.97 -6.35)
+		(end 13.97 8.89)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "c834c4b1-6e4a-4b21-b35e-6076bdd6764f")
+	)
+	(fp_text user "+ batt"
+		(at 6.35 -1.905 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "6617a15e-3cf5-4a4f-975c-704c93e90d73")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.2)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(fp_text user "V_{in}-"
+		(at -11.43 8.255 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "6f8fb76b-c31e-4b25-82cc-2b6be37fcb0f")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.2)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(fp_text user "- V_{out}"
+		(at 6.35 8.255 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "cd2e2b2d-5b2d-4050-86fa-34393e8589d9")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.2)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(fp_text user "- batt"
+		(at 6.35 5.715 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "cfeef004-bdd6-436d-ac2b-a29fc378e222")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.2)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(fp_text user "V_{in}+"
+		(at -11.43 -4.445 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "d02fcb65-48e0-403c-8a0a-f8f02ce24de4")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.2)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(fp_text user "+ V_{out}"
+		(at 6.35 -4.445 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "f3216a47-5da7-41c0-9a09-a04e7decaacd")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.2)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(fp_text user "usb"
+		(at -13.335 1.905 270)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "862f4082-16cf-42eb-b142-838de9914715")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.1)
+			)
+			(justify left bottom)
+		)
+	)
+	(pad "1" thru_hole rect
+		(at -12.7 -5.08)
+		(size 1.8 1.8)
+		(drill 0.9)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "f5c8c371-b5c0-4476-a2f1-ca6e10478472")
+	)
+	(pad "2" thru_hole circle
+		(at -12.7 7.62)
+		(size 1.8 1.8)
+		(drill 0.9)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "4ad47ff7-3acd-48a6-9248-215289982c89")
+	)
+	(pad "3" thru_hole circle
+		(at 12.713786 5.060867)
+		(size 1.8 1.8)
+		(drill 0.9)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "706fae3d-71ba-44da-9141-fda9b1b28a31")
+	)
+	(pad "4" thru_hole circle
+		(at 12.713786 -2.559133)
+		(size 1.8 1.8)
+		(drill 0.9)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "efd24141-2c59-48b8-a073-d1070a3e9729")
+	)
+	(pad "5" thru_hole circle
+		(at 12.713786 7.600867)
+		(size 1.8 1.8)
+		(drill 0.9)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "7e43bc7f-2258-4e5a-95a7-f278d7a3d2b4")
+	)
+	(pad "6" thru_hole circle
+		(at 12.7 -5.08)
+		(size 1.8 1.8)
+		(drill 0.9)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "0cb37f36-6ee1-453b-b938-2230a25d3918")
+	)
+	(embedded_fonts no)
+	(model "C:/Users/dheard/Documents/0000-KiCad/7.0/share/kicad/3rdparty/000_Immo_3D_models/solid-state-relay/9045765.stp"
+		(offset
+			(xyz -14.5 -29.5 -1.5)
+		)
+		(scale
+			(xyz 0.65 0.65 0.65)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)
