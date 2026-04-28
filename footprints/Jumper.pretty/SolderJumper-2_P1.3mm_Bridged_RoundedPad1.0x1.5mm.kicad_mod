@@ -1,7 +1,7 @@
 (footprint "SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm"
-	(version 20241229)
+	(version 20260206)
 	(generator "pcbnew")
-	(generator_version "9.0")
+	(generator_version "10.0")
 	(layer "F.Cu")
 	(descr "SMD Solder Jumper, 1x1.5mm, rounded Pads, 0.3mm gap, bridged with 1 copper strip")
 	(tags "net tie solder jumper bridged")
@@ -11,7 +11,7 @@
 		(uuid "7e665f20-2274-46c5-b843-429dec3d10e8")
 		(effects
 			(font
-				(size 0.8 0.8)
+				(size 1 1)
 				(thickness 0.15)
 			)
 		)
@@ -22,16 +22,17 @@
 		(uuid "47090aa3-9309-4fe1-8b8d-3a99dfbe88f2")
 		(effects
 			(font
-				(size 0.8 0.8)
+				(size 1 1)
 				(thickness 0.15)
 			)
 		)
 	)
 	(property "Datasheet" ""
 		(at 0 0 0)
+		(unlocked yes)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "3d49bde4-425a-4c8d-983b-8fc61a9b4c5c")
+		(uuid "09f04004-e42d-4901-8654-2017adc86ec5")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -41,9 +42,10 @@
 	)
 	(property "Description" ""
 		(at 0 0 0)
+		(unlocked yes)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "980ca1fc-446a-4986-a405-143be4e091ba")
+		(uuid "174271f2-71a3-44be-a2d2-154173802b94")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -51,8 +53,10 @@
 			)
 		)
 	)
-	(attr exclude_from_pos_files exclude_from_bom)
+	(zone_connect 1)
+	(attr exclude_from_pos_files exclude_from_bom allow_soldermask_bridges)
 	(net_tie_pad_groups "1, 2")
+	(duplicate_pad_numbers_are_jumpers no)
 	(fp_poly
 		(pts
 			(xy 0.25 -0.3) (xy -0.25 -0.3) (xy -0.25 0.3) (xy 0.25 0.3)
@@ -64,6 +68,17 @@
 		(fill yes)
 		(layer "F.Cu")
 		(uuid "8bc6f947-f49a-4bdd-98e2-b20e557e0211")
+	)
+	(fp_rect
+		(start -0.15 -0.75)
+		(end 0.15 0.75)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill yes)
+		(layer "F.Mask")
+		(uuid "ac23f5fb-85d4-4513-afe3-6cf955101da9")
 	)
 	(fp_line
 		(start -1.4 0.3)
@@ -84,16 +99,6 @@
 		)
 		(layer "F.SilkS")
 		(uuid "6dd483d2-b998-42e4-90d3-e028559844b4")
-	)
-	(fp_line
-		(start 0.15 -0.01)
-		(end -0.16 -0.01)
-		(stroke
-			(width 0.5)
-			(type default)
-		)
-		(layer "F.SilkS")
-		(uuid "79cf3d8a-c4f9-4bee-8af3-1213bc709d02")
 	)
 	(fp_line
 		(start 0.7 1)

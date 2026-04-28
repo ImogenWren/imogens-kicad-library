@@ -3345,6 +3345,24 @@
 				(hide yes)
 			)
 		)
+		(property "RSpart" "    648-7863"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "supplier" "https://uk.rs-online.com/web/p/pcb-terminal-blocks/6487863"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(property "ki_keywords" "screw terminal"
 			(at 0 0 0)
 			(effects

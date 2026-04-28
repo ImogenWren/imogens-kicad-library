@@ -1,7 +1,7 @@
 (footprint "Fuseholder_Cylinder-5x20mm_Stelvio-Kontek_PTF78_Horizontal_Open"
-	(version 20241229)
+	(version 20260206)
 	(generator "pcbnew")
-	(generator_version "9.0")
+	(generator_version "10.0")
 	(layer "F.Cu")
 	(descr "https://www.tme.eu/en/Document/3b48dbe2b9714a62652c97b08fcd464b/PTF78.pdf")
 	(tags "Fuseholder horizontal open 5x20 Stelvio-Kontek PTF/78")
@@ -11,7 +11,7 @@
 		(uuid "0894d839-9b59-42f4-8711-51cec1208553")
 		(effects
 			(font
-				(size 0.8 0.8)
+				(size 1 1)
 				(thickness 0.15)
 			)
 		)
@@ -29,9 +29,10 @@
 	)
 	(property "Datasheet" ""
 		(at 0 0 0)
+		(unlocked yes)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "b61426c9-0a02-4493-adbf-a533a7ab02e5")
+		(uuid "265c640f-95d8-446d-828b-d3fda7f011c9")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -41,9 +42,10 @@
 	)
 	(property "Description" ""
 		(at 0 0 0)
+		(unlocked yes)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "e6a88866-b8ca-4b04-9351-99ba73ef5db0")
+		(uuid "4df6f7ad-3370-4194-8239-d1303d2696ad")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -52,6 +54,7 @@
 		)
 	)
 	(attr through_hole)
+	(duplicate_pad_numbers_are_jumpers no)
 	(fp_line
 		(start 0 -4.8)
 		(end 22.6 -4.8)
@@ -420,19 +423,7 @@
 		(uuid "101f71e9-5861-43d3-815d-840995ea243d")
 	)
 	(embedded_fonts no)
-	(model "${KICAD6_3DMODEL_DIR}/Fuse.3dshapes/Fuseholder_Cylinder-5x20mm_Stelvio-Kontek_PTF78_Horizontal_Open.wrl"
-		(hide yes)
-		(offset
-			(xyz 0 0 0)
-		)
-		(scale
-			(xyz 1 1 1)
-		)
-		(rotate
-			(xyz 0 0 0)
-		)
-	)
-	(model "${KICAD6_3DMODEL_DIR}/Fuse.3dshapes/Fuseholder_Cylinder-5x20mm_Schurter_0031_8201_Horizontal_Open.step"
+	(model "${KICAD10_3DMODEL_DIR}/Fuse.3dshapes/Fuseholder_Cylinder-5x20mm_Stelvio-Kontek_PTF78_Horizontal_Open.step"
 		(offset
 			(xyz 0 0 0)
 		)

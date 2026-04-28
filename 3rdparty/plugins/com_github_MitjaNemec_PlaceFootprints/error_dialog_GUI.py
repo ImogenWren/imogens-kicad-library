@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ###########################################################################
-## Python code generated with wxFormBuilder (version 3.10.1-0-g8feb16b)
+## Python code generated with wxFormBuilder (version 4.2.1-0-g80c4cb6)
 ## http://www.wxformbuilder.org/
 ##
 ## PLEASE DO *NOT* EDIT THIS FILE!
@@ -24,12 +24,12 @@ class ErrorDialogGUI ( wx.Dialog ):
 
         bSizer1 = wx.BoxSizer( wx.VERTICAL )
 
-        self.m_staticText1 = wx.StaticText( self, wx.ID_ANY, u"Fatal error when placing footprints. You can raise an issue on GiHub page.                    + \"Please attach the save_restore_layout.log which you should find in the project folder.", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticText1 = wx.StaticText( self, wx.ID_ANY, u"Fatal error when placing footprints. You can raise an issue on GitHub page.", wx.DefaultPosition, wx.DefaultSize, 0 )
         self.m_staticText1.Wrap( -1 )
 
         bSizer1.Add( self.m_staticText1, 0, wx.ALL, 5 )
 
-        self.m_staticText3 = wx.StaticText( self, wx.ID_ANY, u"You can raise an issue on GiHub page.", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticText3 = wx.StaticText( self, wx.ID_ANY, u"You can raise an issue on GitHub page.", wx.DefaultPosition, wx.DefaultSize, 0 )
         self.m_staticText3.Wrap( -1 )
 
         bSizer1.Add( self.m_staticText3, 0, wx.ALL, 5 )

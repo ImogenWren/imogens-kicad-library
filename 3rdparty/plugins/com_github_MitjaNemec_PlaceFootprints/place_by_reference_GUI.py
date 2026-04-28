@@ -160,18 +160,26 @@ class PlaceByReferenceGUI ( wx.Dialog ):
         self.Centre( wx.BOTH )
 
         # Connect Events
+        self.Bind( wx.EVT_SHOW, self.on_show )
         self.list_footprints.Bind( wx.EVT_LISTBOX, self.on_selected )
         self.com_arr.Bind( wx.EVT_COMBOBOX, self.arr_changed )
+        self.btn_ok.Bind( wx.EVT_BUTTON, self.on_ok )
 
     def __del__( self ):
         pass
 
 
     # Virtual event handlers, override them in your derived class
+    def on_show( self, event ):
+        event.Skip()
+
     def on_selected( self, event ):
         event.Skip()
 
     def arr_changed( self, event ):
+        event.Skip()
+
+    def on_ok( self, event ):
         event.Skip()
 
 

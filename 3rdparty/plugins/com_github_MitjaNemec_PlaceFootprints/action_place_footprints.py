@@ -29,8 +29,10 @@ from .initial_dialog_GUI import InitialDialogGUI
 from .place_by_reference_GUI import PlaceByReferenceGUI
 from .place_by_sheet_GUI import PlaceBySheetGUI
 from .error_dialog_GUI import ErrorDialogGUI
+from .deprecation_dialog_GUI import DeprecationDialogGUI
 from .place_footprints import Placer
 import re
+import configparser
 
 
 def fp_set_highlight(fp):
@@ -65,6 +67,13 @@ class ErrorDialog(ErrorDialogGUI):
     def __init__(self, parent):
         super(ErrorDialog, self).__init__(parent)
 
+class DeprecationDialog(DeprecationDialogGUI):
+    def SetSizeHints(self, sz1, sz2):
+        # DO NOTHING
+        pass
+
+    def __init__(self, parent):
+        super(DeprecationDialog, self).__init__(parent)
 
 class PlaceBySheetDialog(PlaceBySheetGUI):
     def SetSizeHints(self, sz1, sz2):
@@ -72,6 +81,7 @@ class PlaceBySheetDialog(PlaceBySheetGUI):
         pass
 
     def __init__(self, parent, placer, ref_fp, user_units):
+
         super(PlaceBySheetDialog, self).__init__(parent)
 
         self.placer = placer
@@ -79,12 +89,26 @@ class PlaceBySheetDialog(PlaceBySheetGUI):
         self.ref_fp = ref_fp
         self.ref_list = []
         self.list_sheetsChoices = None
+        self.config_filename = os.path.join(self.placer.project_folder, 'place_footprints.ini')
+        self.logger = logging.getLogger(__name__)
+        self.logger.info("By Sheet GUI initialized")
+        self.background_color = self.lbl_x_mag.GetBackgroundColour()
 
         footprints = self.placer.get_footprints_on_sheet(self.ref_fp.sheet_id)
         self.height, self.width = self.placer.get_footprints_bounding_box_size(footprints)
 
         self.list_levels.Clear()
         self.list_levels.AppendItems(self.ref_fp.filename)
+
+        self.logger.info("Ref fp:" + repr(self.ref_fp))
+        self.logger.info("Levels:" + repr(self.ref_fp.filename))
+        # by default select all items
+        self.logger.info("Selecting: " + repr(self.list_levels.GetCount()))
+        for i in range(self.list_levels.GetCount()):
+            self.list_levels.SetSelection(i)
+
+        self.logger.info("Should invoke level_changed()")
+        self.level_changed(None)
 
         if user_units == 'mm':
             self.lbl_x_mag.SetLabelText(u"step x (mm):")
@@ -95,11 +119,115 @@ class PlaceBySheetDialog(PlaceBySheetGUI):
         self.lbl_columns_rad_step.Disable()
         self.val_columns_rad_step.Disable()
 
-    def __del__(self):
+        # load config file if it exists
+        if os.path.exists(self.config_filename):
+            config = configparser.ConfigParser()
+            config.read(self.config_filename)
+            # if there is by sheet config
+            if 'sheet' in config.sections():
+                # get the arrangement
+                arrangement = config['sheet']['arrangement']
+                if arrangement == 'Linear':
+                    self.com_arr.SetSelection(0)
+                    self.modify_dialog_for_linear()
+                    self.val_x_mag.SetValue(config['sheet.linear']['step_x'])
+                    self.val_y_angle.SetValue(config['sheet.linear']['step_y'])
+                    self.val_nth.SetValue(config['sheet.linear']['nth_rotate'])
+                    self.val_rotate.SetValue(config['sheet.linear']['nth_rotate_angle'])
+                if arrangement == 'Circular':
+                    self.com_arr.SetSelection(2)
+                    self.modify_dialog_for_circular()
+                    self.val_y_angle.SetValue(config['sheet.circular']['angle'])
+                    self.val_columns_rad_step.SetValue(config['sheet.circular']['radial_step'])
+                    self.val_x_mag.SetValue(config['sheet.circular']['radius'])
+                    self.val_nth.SetValue(config['sheet.circular']['nth_rotate'])
+                    self.val_rotate.SetValue(config['sheet.circular']['nth_rotate_angle'])
+                if arrangement == 'Matrix':
+                    self.com_arr.SetSelection(1)
+                    self.modify_dialog_for_matrix()
+                    self.val_x_mag.SetValue(config['sheet.matrix']['step_x'])
+                    self.val_y_angle.SetValue(config['sheet.matrix']['step_y'])
+                    self.val_columns_rad_step.SetValue(config['sheet.matrix']['columns'])
+                    self.val_nth.SetValue(config['sheet.matrix']['nth_rotate'])
+                    self.val_rotate.SetValue(config['sheet.matrix']['nth_rotate_angle'])
+
+    def on_ok(self, event):
+        # test if all entries have numbers, if they don't then don't do anything
+        invalid_entry = False
+        if self.val_x_mag.GetValue() == '':
+            self.val_x_mag.SetBackgroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_HIGHLIGHT))
+            invalid_entry = True
+        else:
+            self.val_x_mag.SetBackgroundColour(self.background_color)
+
+        if self.val_y_angle.GetValue() == '':
+            self.val_y_angle.SetBackgroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_HIGHLIGHT))
+            invalid_entry = True
+        else:
+            self.val_y_angle.SetBackgroundColour(self.background_color)
+
+        if self.val_nth.GetValue() == '':
+            self.val_nth.SetBackgroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_HIGHLIGHT))
+            invalid_entry = True
+        else:
+            self.val_nth.SetBackgroundColour(self.background_color)
+
+        if self.val_rotate.GetValue() == '':
+            self.val_rotate.SetBackgroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_HIGHLIGHT))
+            invalid_entry = True
+        else:
+            self.val_rotate.SetBackgroundColour(self.background_color)
+
+        if self.com_arr.GetStringSelection() != 'Linear' and self.val_columns_rad_step.GetValue() == '':
+            self.val_columns_rad_step.SetBackgroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_HIGHLIGHT))
+            invalid_entry = True
+        else:
+            self.val_columns_rad_step.SetBackgroundColour(self.background_color)
+
+        if invalid_entry:
+            return
+
         # clear highlights
         for ref in self.ref_list:
             fp = self.placer.get_fp_by_ref(ref).fp
             fp_clear_highlight(fp)
+
+        self.logger.info("Saving config sheet")
+
+        # save the config
+        # if existing, append
+        if os.path.exists(self.config_filename):
+            config = configparser.ConfigParser()
+            config.read(self.config_filename)
+        else:
+            config = configparser.ConfigParser()
+        config['sheet'] = {'arrangement': self.com_arr.GetStringSelection()}
+        arrangement = config['sheet']['arrangement']
+        if arrangement == 'Linear':
+            self.logger.info("Preparing config for sheet linear")
+            config['sheet.linear'] = {'step_x': self.val_x_mag.GetValue(),
+                                      'step_y': self.val_y_angle.GetValue(),
+                                      'nth_rotate': self.val_nth.GetValue(),
+                                      'nth_rotate_angle': self.val_rotate.GetValue()}
+        if arrangement == 'Circular':
+            self.logger.info("Preparing config for sheet circular")
+            config['sheet.circular'] = {'angle': self.val_y_angle.GetValue(),
+                                        'radial_step': self.val_columns_rad_step.GetValue(),
+                                        'radius': self.val_x_mag.GetValue(),
+                                        'nth_rotate': self.val_nth.GetValue(),
+                                        'nth_rotate_angle': self.val_rotate.GetValue()}
+        if arrangement == 'Matrix':
+            self.logger.info("Preparing config for sheet matrix")
+            config['sheet.matrix'] = {'step_x': self.val_x_mag.GetValue(),
+                                      'step_y': self.val_y_angle.GetValue(),
+                                      'columns': self.val_columns_rad_step.GetValue(),
+                                      'nth_rotate': self.val_nth.GetValue(),
+                                      'nth_rotate_angle': self.val_rotate.GetValue()}
+        with open(self.config_filename, 'w') as configfile:
+            self.logger.info("Saving config file")
+            config.write(configfile)
+            self.logger.info("Saved the config file")
+        event.Skip()
 
     def modify_dialog_for_linear(self):
         if self.user_units == 'mm':
@@ -136,6 +264,7 @@ class PlaceBySheetDialog(PlaceBySheetGUI):
 
     def modify_dialog_for_circular(self):
         number_of_all_sheets = len(self.list_sheets.GetSelections())
+        self.logger.info("Selection: " + repr(self.list_sheets.GetSelections()))
         circumference = number_of_all_sheets * self.width
         radius = circumference / (2 * math.pi)
         angle = 360.0 / number_of_all_sheets
@@ -156,9 +285,12 @@ class PlaceBySheetDialog(PlaceBySheetGUI):
         self.val_columns_rad_step.Enable()
 
     def level_changed(self, event):
-        index = self.list_levels.GetSelection()
+        self.logger.info("Level_changed() invoked")
 
-        self.list_sheetsChoices = self.placer.get_sheets_to_replicate(self.ref_fp, self.ref_fp.sheet_id[index])
+        index = self.list_levels.GetSelection()
+        self.logger.info(f'self.ref_fp.sheet_id[index] = {repr(self.ref_fp.sheet_id[index])}')
+        self.logger.info(f'self.ref_fp.sheet_id = {repr(self.ref_fp.sheet_id)}')
+        self.list_sheetsChoices = self.placer.get_sheets_to_place(self.ref_fp, self.ref_fp.sheet_id[index])
 
         # clear highlights
         for ref in self.ref_list:
@@ -171,11 +303,15 @@ class PlaceBySheetDialog(PlaceBySheetGUI):
 
         # find matching anchors to matching sheets so that indices will match
         self.ref_list = []
-        for sheet in self.list_sheetsChoices:
-            for fp in footprints_with_same_id:
+        self.logger.info(f'self.list_sheetsChoices: {repr(self.list_sheetsChoices)}')
+
+        for fp in footprints_with_same_id:
+            self.logger.info(f'fp.sheet_id: {repr(fp.sheet_id)}')
+            for sheet in self.list_sheetsChoices:
                 if "/".join(sheet) in "/".join(fp.sheet_id):
                     self.ref_list.append(fp.ref)
                     break
+        self.logger.info(f'self.ref_list: {repr(self.ref_list)}')
 
         sheets_for_list = ['/'.join(x[0]) + " (" + x[1] + ")" for x in zip(self.list_sheetsChoices, self.ref_list)]
 
@@ -234,6 +370,10 @@ class PlaceByReferenceDialog(PlaceByReferenceGUI):
 
         self.placer = placer
         self.user_units = user_units
+        self.config_filename = os.path.join(self.placer.project_folder, 'place_footprints.ini')
+        self.logger = logging.getLogger(__name__)
+        self.background_color = self.lbl_x_mag.GetBackgroundColour()
+        self.logger.info(repr(self.background_color))
 
         # grab footprint data
         self.ref_fp = ref_fp
@@ -249,60 +389,104 @@ class PlaceByReferenceDialog(PlaceByReferenceGUI):
         self.lbl_columns_rad_step.Disable()
         self.val_columns_rad_step.Disable()
 
+        # load config file if it
+    def on_show(self, event ):
+        if os.path.exists(self.config_filename):
+            config = configparser.ConfigParser()
+            config.read(self.config_filename)
+            # if there is by sheet config
+            if 'reference' in config.sections():
+                # get the arrangement
+                arrangement = config['reference']['arrangement']
+                if arrangement == 'Linear':
+                    self.com_arr.SetSelection(0)
+                    self.modify_dialog_for_linear()
+                    self.val_x_mag.SetValue(config['reference.linear']['step_x'])
+                    self.val_y_angle.SetValue(config['reference.linear']['step_y'])
+                    self.val_nth.SetValue(config['reference.linear']['nth_rotate'])
+                    self.val_rotate.SetValue(config['reference.linear']['nth_rotate_angle'])
+                if arrangement == 'Circular':
+                    self.com_arr.SetSelection(2)
+                    self.modify_dialog_for_circular()
+                    self.val_y_angle.SetValue(config['reference.circular']['angle'])
+                    self.val_columns_rad_step.SetValue(config['reference.circular']['radial_step'])
+                    self.val_x_mag.SetValue(config['reference.circular']['radius'])
+                    self.val_nth.SetValue(config['reference.circular']['nth_rotate'])
+                    self.val_rotate.SetValue(config['reference.circular']['nth_rotate_angle'])
+                if arrangement == 'Matrix':
+                    self.com_arr.SetSelection(1)
+                    self.modify_dialog_for_matrix()
+                    self.val_x_mag.SetValue(config['reference.matrix']['step_x'])
+                    self.val_y_angle.SetValue(config['reference.matrix']['step_y'])
+                    self.val_columns_rad_step.SetValue(config['reference.matrix']['columns'])
+                    self.val_nth.SetValue(config['reference.matrix']['nth_rotate'])
+                    self.val_rotate.SetValue(config['reference.matrix']['nth_rotate_angle'])
+        event.Skip()
+
     def arr_changed(self, event):
         # linear layout
         if self.com_arr.GetStringSelection() == u"Linear":
-            if self.user_units == 'mm':
-                self.lbl_x_mag.SetLabelText(u"step x (mm):")
-                self.lbl_y_angle.SetLabelText(u"step y (mm):")
-                self.val_x_mag.SetValue("%.3f" % self.width)
-                self.val_y_angle.SetValue("%.3f" % self.height)
-            else:
-                self.lbl_x_mag.SetLabelText(u"step x (mils):")
-                self.lbl_y_angle.SetLabelText(u"step y (mils):")
-                self.val_x_mag.SetValue("%.3f" % (self.width / 25.4))
-                self.val_y_angle.SetValue("%.3f" % (self.height / 25.4))
-            self.lbl_columns_rad_step.Disable()
-            self.val_columns_rad_step.Disable()
+            self.modify_dialog_for_linear()
         # Matrix
         if self.com_arr.GetStringSelection() == u"Matrix":
-            if self.user_units == 'mm':
-                self.lbl_x_mag.SetLabelText(u"step x (mm):")
-                self.lbl_y_angle.SetLabelText(u"step y (mm):")
-                self.val_x_mag.SetValue("%.3f" % self.width)
-                self.val_y_angle.SetValue("%.3f" % self.height)
-            else:
-                self.lbl_x_mag.SetLabelText(u"step x (mils):")
-                self.lbl_y_angle.SetLabelText(u"step y (mils):")
-                self.val_x_mag.SetValue("%.3f" % (self.width / 25.4))
-                self.val_y_angle.SetValue("%.3f" % (self.height / 25.4))
-            self.lbl_columns_rad_step.SetLabelText(u"Nr.columns:")
-            self.lbl_columns_rad_step.Enable()
-            self.val_columns_rad_step.Enable()
-            self.val_columns_rad_step.Clear()
-            self.val_columns_rad_step.SetValue(str(int(round(math.sqrt(len(self.list_footprints.GetSelections()))))))
+            self.modify_dialog_for_matrix()
         # circular layout
         if self.com_arr.GetStringSelection() == u"Circular":
-            number_of_all_footprints = len(self.list_footprints.GetSelections())
-            circumference = number_of_all_footprints * self.width
-            radius = circumference / (2 * math.pi)
-            angle = 360.0 / number_of_all_footprints
-            if self.user_units == 'mm':
-                self.lbl_x_mag.SetLabelText(u"radius (mm):")
-                self.val_x_mag.SetValue("%.3f" % radius)
-            else:
-                self.lbl_x_mag.SetLabelText(u"radius (mils):")
-                self.val_x_mag.SetValue("%.3f" % (radius / 25.4))
-            self.lbl_y_angle.SetLabelText(u"angle (deg):")
-            self.val_y_angle.SetValue("%.3f" % angle)
-            if self.user_units == 'mm':
-                self.lbl_columns_rad_step.SetLabelText(u"radial step (mm):")
-            else:
-                self.lbl_columns_rad_step.SetLabelText(u"radial step (mils):")
-            self.lbl_columns_rad_step.Enable()
-            self.val_columns_rad_step.SetValue("0.0")
-            self.val_columns_rad_step.Enable()
+            self.modify_dialog_for_circular()
+
         event.Skip()
+
+    def modify_dialog_for_linear(self):
+        if self.user_units == 'mm':
+            self.lbl_x_mag.SetLabelText(u"step x (mm):")
+            self.lbl_y_angle.SetLabelText(u"step y (mm):")
+            self.val_x_mag.SetValue("%.3f" % self.width)
+            self.val_y_angle.SetValue("%.3f" % self.height)
+        else:
+            self.lbl_x_mag.SetLabelText(u"step x (mils):")
+            self.lbl_y_angle.SetLabelText(u"step y (mils):")
+            self.val_x_mag.SetValue("%.3f" % (self.width / 25.4))
+            self.val_y_angle.SetValue("%.3f" % (self.height / 25.4))
+        self.lbl_columns_rad_step.Disable()
+        self.val_columns_rad_step.Disable()
+
+    def modify_dialog_for_circular(self):
+        number_of_all_footprints = len(self.list_footprints.GetSelections())
+        circumference = number_of_all_footprints * self.width
+        radius = circumference / (2 * math.pi)
+        angle = 360.0 / number_of_all_footprints
+        if self.user_units == 'mm':
+            self.lbl_x_mag.SetLabelText(u"radius (mm):")
+            self.val_x_mag.SetValue("%.3f" % radius)
+        else:
+            self.lbl_x_mag.SetLabelText(u"radius (mils):")
+            self.val_x_mag.SetValue("%.3f" % (radius / 25.4))
+        self.lbl_y_angle.SetLabelText(u"angle (deg):")
+        self.val_y_angle.SetValue("%.3f" % angle)
+        if self.user_units == 'mm':
+            self.lbl_columns_rad_step.SetLabelText(u"radial step (mm):")
+        else:
+            self.lbl_columns_rad_step.SetLabelText(u"radial step (mils):")
+        self.lbl_columns_rad_step.Enable()
+        self.val_columns_rad_step.SetValue("0.0")
+        self.val_columns_rad_step.Enable()
+
+    def modify_dialog_for_matrix(self):
+        if self.user_units == 'mm':
+            self.lbl_x_mag.SetLabelText(u"step x (mm):")
+            self.lbl_y_angle.SetLabelText(u"step y (mm):")
+            self.val_x_mag.SetValue("%.3f" % self.width)
+            self.val_y_angle.SetValue("%.3f" % self.height)
+        else:
+            self.lbl_x_mag.SetLabelText(u"step x (mils):")
+            self.lbl_y_angle.SetLabelText(u"step y (mils):")
+            self.val_x_mag.SetValue("%.3f" % (self.width / 25.4))
+            self.val_y_angle.SetValue("%.3f" % (self.height / 25.4))
+        self.lbl_columns_rad_step.SetLabelText(u"Nr.columns:")
+        self.lbl_columns_rad_step.Enable()
+        self.val_columns_rad_step.Enable()
+        self.val_columns_rad_step.Clear()
+        self.val_columns_rad_step.SetValue(str(int(round(math.sqrt(len(self.list_footprints.GetSelections()))))))
 
     def on_selected(self, event):
         # go through the list and set/clear highlight accordingly
@@ -316,6 +500,81 @@ class PlaceByReferenceDialog(PlaceByReferenceGUI):
             else:
                 fp_clear_highlight(footprint)
         pcbnew.Refresh()
+
+    def on_ok(self, event):
+        invalid_entry = False
+
+        self.logger.info(repr(self.val_x_mag.GetValue()))
+        if self.val_x_mag.GetValue() == '':
+            self.val_x_mag.SetBackgroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_HIGHLIGHT))
+            invalid_entry = True
+        else:
+            self.val_x_mag.SetBackgroundColour(self.background_color)
+
+        if self.val_y_angle.GetValue() == '':
+            self.val_y_angle.SetBackgroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_HIGHLIGHT))
+            invalid_entry = True
+        else:
+            self.val_y_angle.SetBackgroundColour(self.background_color)
+
+        if self.val_nth.GetValue() == '':
+            self.val_nth.SetBackgroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_HIGHLIGHT))
+            invalid_entry = True
+        else:
+            self.val_nth.SetBackgroundColour(self.background_color)
+
+        if self.val_rotate.GetValue() == '':
+            self.val_rotate.SetBackgroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_HIGHLIGHT))
+            invalid_entry = True
+        else:
+            self.val_rotate.SetBackgroundColour(self.background_color)
+
+        if self.com_arr.GetStringSelection() != 'Linear' and self.val_columns_rad_step.GetValue() == '':
+            self.val_columns_rad_step.SetBackgroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_HIGHLIGHT))
+            invalid_entry = True
+        else:
+            self.val_columns_rad_step.SetBackgroundColour(self.background_color)
+
+        if invalid_entry:
+            return
+
+        # clear highlights
+        # TODO
+        # save the config
+        # if existing, append
+        if os.path.exists(self.config_filename):
+            config = configparser.ConfigParser()
+            config.read(self.config_filename)
+        else:
+            config = configparser.ConfigParser()
+        config['reference'] = {'arrangement': self.com_arr.GetStringSelection()}
+        arrangement = config['reference']['arrangement']
+        if arrangement == 'Linear':
+            self.logger.info("Preparing config for reference linear")
+            config['reference.linear'] = {'step_x': self.val_x_mag.GetValue(),
+                                          'step_y': self.val_y_angle.GetValue(),
+                                          'nth_rotate': self.val_nth.GetValue(),
+                                          'nth_rotate_angle':  self.val_rotate.GetValue()}
+        if arrangement == 'Circular':
+            self.logger.info("Preparing config for reference circular")
+            config['reference.circular'] = {'angle': self.val_y_angle.GetValue(),
+                                            'radial_step': self.val_columns_rad_step.GetValue(),
+                                            'radius': self.val_x_mag.GetValue(),
+                                            'nth_rotate': self.val_nth.GetValue(),
+                                            'nth_rotate_angle': self.val_rotate.GetValue()}
+        if arrangement == 'Matrix':
+            self.logger.info("Preparing config for reference matrix")
+            config['reference.matrix'] = {'step_x': self.val_x_mag.GetValue(),
+                                          'step_y': self.val_y_angle.GetValue(),
+                                          'columns': self.val_columns_rad_step.GetValue(),
+                                          'nth_rotate': self.val_nth.GetValue(),
+                                          'nth_rotate_angle': self.val_rotate.GetValue()}
+        with open(self.config_filename, 'w') as configfile:
+            self.logger.info("Saving config file")
+            config.write(configfile)
+            self.logger.info("Saved the config file")
+
+        event.Skip()
 
 
 class InitialDialog(InitialDialogGUI):
@@ -364,6 +623,7 @@ class PlaceFootprints(pcbnew.ActionPlugin):
 
         # plugin paths
         self.plugin_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)))
+        self.deprecation_file_path = os.path.join(self.plugin_folder, 'deprecation.null')
         self.version_file_path = os.path.join(self.plugin_folder, 'version.txt')
 
         # load the plugin version
@@ -376,6 +636,15 @@ class PlaceFootprints(pcbnew.ActionPlugin):
     def Run(self):
         # grab PCB editor frame
         self.frame = wx.FindWindowByName("PcbFrame")
+
+        # issue deprecation warning only once
+        if not os.path.exists(self.deprecation_file_path):
+            d_dlg = DeprecationDialog(self.frame)
+            d_dlg.ShowModal()
+            d_dlg.Destroy()
+            # create empty file
+            with open(self.deprecation_file_path, 'w') as f:
+                f.write("")
 
         # load board
         board = pcbnew.GetBoard()
@@ -445,6 +714,7 @@ class PlaceFootprints(pcbnew.ActionPlugin):
 
         # get reference footprint
         ref_fp = placer.get_fp_by_ref(ref_fp_ref)
+        logger.info(f'Reference footprint={repr(ref_fp.ref)}')
 
         # ask user which way to select other footprints (by increasing reference number or by ID)
         dlg_initial = InitialDialog(self.frame)

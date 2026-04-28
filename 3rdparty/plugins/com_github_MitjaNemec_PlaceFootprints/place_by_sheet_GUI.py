@@ -168,6 +168,7 @@ class PlaceBySheetGUI ( wx.Dialog ):
         self.list_levels.Bind( wx.EVT_LISTBOX, self.level_changed )
         self.list_sheets.Bind( wx.EVT_LISTBOX, self.on_selected )
         self.com_arr.Bind( wx.EVT_COMBOBOX, self.arr_changed )
+        self.btn_ok.Bind( wx.EVT_BUTTON, self.on_ok )
 
     def __del__( self ):
         pass
@@ -181,6 +182,9 @@ class PlaceBySheetGUI ( wx.Dialog ):
         event.Skip()
 
     def arr_changed( self, event ):
+        event.Skip()
+
+    def on_ok( self, event ):
         event.Skip()
 
 

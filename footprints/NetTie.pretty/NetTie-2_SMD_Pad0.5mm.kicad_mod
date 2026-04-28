@@ -1,18 +1,18 @@
 (footprint "NetTie-2_SMD_Pad0.5mm"
-	(version 20241229)
+	(version 20260206)
 	(generator "pcbnew")
-	(generator_version "9.0")
+	(generator_version "10.0")
 	(layer "F.Cu")
 	(descr "Net tie, 2 pin, 0.5mm square SMD pads")
 	(tags "net tie")
 	(property "Reference" "REF**"
-		(at -0.5 -1.25 0)
+		(at 0 -1.2 0)
 		(layer "F.SilkS")
 		(hide yes)
-		(uuid "d382193c-6ac4-4313-8c9f-95ff1483c70f")
+		(uuid "eba058f4-175e-4413-b550-93e1748b898d")
 		(effects
 			(font
-				(size 0.8 0.8)
+				(size 1 1)
 				(thickness 0.15)
 			)
 		)
@@ -20,7 +20,8 @@
 	(property "Value" "NetTie-2_SMD_Pad0.5mm"
 		(at 0 1.2 0)
 		(layer "F.Fab")
-		(uuid "2d68b447-d41b-44d7-92c5-78eb7be5c076")
+		(hide yes)
+		(uuid "55decc6c-ccba-49a9-9c58-e53b55d22ed2")
 		(effects
 			(font
 				(size 1 1)
@@ -30,9 +31,10 @@
 	)
 	(property "Datasheet" ""
 		(at 0 0 0)
+		(unlocked yes)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "08263350-2ca6-4568-8aa5-0737b9b25267")
+		(uuid "ac790df5-f1b7-43ae-ac7e-705c8ce52944")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -42,9 +44,10 @@
 	)
 	(property "Description" ""
 		(at 0 0 0)
+		(unlocked yes)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "5d2efd92-af31-4220-a223-e376395eff66")
+		(uuid "69021017-5bce-4839-bb47-8cc5ae5c163d")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -52,11 +55,12 @@
 			)
 		)
 	)
-	(attr exclude_from_pos_files exclude_from_bom)
+	(attr exclude_from_pos_files exclude_from_bom allow_missing_courtyard)
 	(net_tie_pad_groups "1, 2")
+	(duplicate_pad_numbers_are_jumpers no)
 	(fp_poly
 		(pts
-			(xy -0.5 -0.3) (xy 0.5 -0.3) (xy 0.5 0.3) (xy -0.5 0.3)
+			(xy -0.5 -0.25) (xy 0.5 -0.25) (xy 0.5 0.25) (xy -0.5 0.25)
 		)
 		(stroke
 			(width 0)
@@ -66,18 +70,16 @@
 		(layer "F.Cu")
 		(uuid "4c587801-35de-4fc4-895b-9942aca7f89f")
 	)
-	(pad "1" smd roundrect
-		(at -0.75 0)
-		(size 0.8 0.6)
+	(pad "1" smd circle
+		(at -0.5 0)
+		(size 0.5 0.5)
 		(layers "F.Cu")
-		(roundrect_rratio 0.25)
 		(uuid "1745e8e7-cb05-4e0c-be57-60ff31465fb9")
 	)
-	(pad "2" smd roundrect
-		(at 0.7 0)
-		(size 0.8 0.6)
+	(pad "2" smd circle
+		(at 0.5 0)
+		(size 0.5 0.5)
 		(layers "F.Cu")
-		(roundrect_rratio 0.25)
 		(uuid "b531e0f4-5d47-4a72-8a54-a3eaafb85b86")
 	)
 	(embedded_fonts no)

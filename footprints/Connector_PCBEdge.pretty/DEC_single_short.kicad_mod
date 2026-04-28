@@ -1,0 +1,788 @@
+(footprint "DEC_single_short"
+	(version 20260206)
+	(generator "kicad-footprint-generator")
+	(layer "F.Cu")
+	(descr "DEC card edge connectors, http://www.bitsavers.org/pdf/dec/handbooks/Digital_Logic_Handbook_1975-76.pdf page 10 (24) (bottom view), http://www.bitsavers.org/pdf/dec/pdp8/pdp8e/PDP-8E_Engineering_Drawings_Dec72.pdf page 70 (bottom view)")
+	(tags "Connector PCBEdge DEC_single_short")
+	(property "Reference" "REF**"
+		(at 30.95 -19.11 0)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "DEC_single_short"
+		(at 30.95 0.7 0)
+		(layer "F.Fab")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "KiLib_Generator" "connector/PCBEdge"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr exclude_from_pos_files exclude_from_bom)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start 2.54 -0.3)
+		(end 59.436 -0.3)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "Dwgs.User")
+	)
+	(fp_line
+		(start 0 -125.222)
+		(end 61.8998 -125.222)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "Edge.Cuts")
+	)
+	(fp_line
+		(start 0 -18.415)
+		(end 0 -125.222)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "Edge.Cuts")
+	)
+	(fp_line
+		(start 0 -18.415)
+		(end 2.54 -18.415)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "Edge.Cuts")
+	)
+	(fp_line
+		(start 2.54 -18.415)
+		(end 2.54 -15.875)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "Edge.Cuts")
+	)
+	(fp_line
+		(start 2.54 -15.875)
+		(end 2.54 0)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "Edge.Cuts")
+	)
+	(fp_line
+		(start 2.54 0)
+		(end 59.436 0)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "Edge.Cuts")
+	)
+	(fp_line
+		(start 59.436 -15.875)
+		(end 61.8998 -15.875)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "Edge.Cuts")
+	)
+	(fp_line
+		(start 59.436 0)
+		(end 59.436 -15.875)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "Edge.Cuts")
+	)
+	(fp_line
+		(start 61.8998 -125.222)
+		(end 61.8998 -18.415)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "Edge.Cuts")
+	)
+	(fp_line
+		(start 61.8998 -15.875)
+		(end 61.8998 -18.415)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "Edge.Cuts")
+	)
+	(fp_rect
+		(start 0 -18.42)
+		(end 61.89 0)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+	)
+	(fp_text user "AV1"
+		(at 3.9624 -16.51 90)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "AU1"
+		(at 7.1374 -16.51 90)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "AT1"
+		(at 10.3124 -16.51 90)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "AS1"
+		(at 13.4874 -16.51 90)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "AR1"
+		(at 16.6624 -16.51 90)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "AP1"
+		(at 19.8374 -16.51 90)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "AN1"
+		(at 23.0124 -16.51 90)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "AM1"
+		(at 26.1874 -16.51 90)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "AL1"
+		(at 29.3624 -16.51 90)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "AK1"
+		(at 32.5374 -16.51 90)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "AJ1"
+		(at 35.7124 -16.51 90)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "AH1"
+		(at 38.8874 -16.51 90)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "AF1"
+		(at 42.0624 -16.51 90)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "AE1"
+		(at 45.2374 -16.51 90)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "AD1"
+		(at 48.4124 -16.51 90)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "AC1"
+		(at 51.5874 -16.51 90)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "AB1"
+		(at 54.7624 -16.51 90)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "AA1"
+		(at 57.9374 -16.51 90)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "AV2"
+		(at 3.9624 -16.51 90)
+		(layer "B.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
+	(fp_text user "AU2"
+		(at 7.1374 -16.51 90)
+		(layer "B.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
+	(fp_text user "AT2"
+		(at 10.3124 -16.51 90)
+		(layer "B.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
+	(fp_text user "AS2"
+		(at 13.4874 -16.51 90)
+		(layer "B.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
+	(fp_text user "AR2"
+		(at 16.6624 -16.51 90)
+		(layer "B.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
+	(fp_text user "AP2"
+		(at 19.8374 -16.51 90)
+		(layer "B.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
+	(fp_text user "AN2"
+		(at 23.0124 -16.51 90)
+		(layer "B.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
+	(fp_text user "AM2"
+		(at 26.1874 -16.51 90)
+		(layer "B.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
+	(fp_text user "AL2"
+		(at 29.3624 -16.51 90)
+		(layer "B.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
+	(fp_text user "AK2"
+		(at 32.5374 -16.51 90)
+		(layer "B.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
+	(fp_text user "AJ2"
+		(at 35.7124 -16.51 90)
+		(layer "B.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
+	(fp_text user "AH2"
+		(at 38.8874 -16.51 90)
+		(layer "B.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
+	(fp_text user "AF2"
+		(at 42.0624 -16.51 90)
+		(layer "B.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
+	(fp_text user "AE2"
+		(at 45.2374 -16.51 90)
+		(layer "B.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
+	(fp_text user "AD2"
+		(at 48.4124 -16.51 90)
+		(layer "B.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
+	(fp_text user "AC2"
+		(at 51.5874 -16.51 90)
+		(layer "B.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
+	(fp_text user "AB2"
+		(at 54.7624 -16.51 90)
+		(layer "B.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
+	(fp_text user "AA2"
+		(at 57.9374 -16.51 90)
+		(layer "B.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
+	(fp_text user "Chamfer 30 degree 1 mm"
+		(at 15 2 0)
+		(layer "Cmts.User")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "PCB thickness 1.6 mm"
+		(at 15 4 0)
+		(layer "Cmts.User")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "${REFERENCE}"
+		(at 30.95 -71.82 0)
+		(layer "F.Fab")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "AA1" connect roundrect
+		(at 57.9374 -7.6501)
+		(size 2.032 14.3002)
+		(layers "F.Cu" "F.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AA2" connect roundrect
+		(at 57.9374 -7.6501)
+		(size 2.032 14.3002)
+		(layers "B.Cu" "B.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AB1" connect roundrect
+		(at 54.7624 -7.6501)
+		(size 2.032 14.3002)
+		(layers "F.Cu" "F.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AB2" connect roundrect
+		(at 54.7624 -7.6501)
+		(size 2.032 14.3002)
+		(layers "B.Cu" "B.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AC1" connect roundrect
+		(at 51.5874 -7.6501)
+		(size 2.032 14.3002)
+		(layers "F.Cu" "F.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AC2" connect roundrect
+		(at 51.5874 -7.6501)
+		(size 2.032 14.3002)
+		(layers "B.Cu" "B.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AD1" connect roundrect
+		(at 48.4124 -7.6501)
+		(size 2.032 14.3002)
+		(layers "F.Cu" "F.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AD2" connect roundrect
+		(at 48.4124 -7.6501)
+		(size 2.032 14.3002)
+		(layers "B.Cu" "B.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AE1" connect roundrect
+		(at 45.2374 -7.6501)
+		(size 2.032 14.3002)
+		(layers "F.Cu" "F.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AE2" connect roundrect
+		(at 45.2374 -7.6501)
+		(size 2.032 14.3002)
+		(layers "B.Cu" "B.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AF1" connect roundrect
+		(at 42.0624 -7.6501)
+		(size 2.032 14.3002)
+		(layers "F.Cu" "F.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AF2" connect roundrect
+		(at 42.0624 -7.6501)
+		(size 2.032 14.3002)
+		(layers "B.Cu" "B.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AH1" connect roundrect
+		(at 38.8874 -7.6501)
+		(size 2.032 14.3002)
+		(layers "F.Cu" "F.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AH2" connect roundrect
+		(at 38.8874 -7.6501)
+		(size 2.032 14.3002)
+		(layers "B.Cu" "B.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AJ1" connect roundrect
+		(at 35.7124 -7.6501)
+		(size 2.032 14.3002)
+		(layers "F.Cu" "F.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AJ2" connect roundrect
+		(at 35.7124 -7.6501)
+		(size 2.032 14.3002)
+		(layers "B.Cu" "B.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AK1" connect roundrect
+		(at 32.5374 -7.6501)
+		(size 2.032 14.3002)
+		(layers "F.Cu" "F.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AK2" connect roundrect
+		(at 32.5374 -7.6501)
+		(size 2.032 14.3002)
+		(layers "B.Cu" "B.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AL1" connect roundrect
+		(at 29.3624 -7.6501)
+		(size 2.032 14.3002)
+		(layers "F.Cu" "F.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AL2" connect roundrect
+		(at 29.3624 -7.6501)
+		(size 2.032 14.3002)
+		(layers "B.Cu" "B.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AM1" connect roundrect
+		(at 26.1874 -7.6501)
+		(size 2.032 14.3002)
+		(layers "F.Cu" "F.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AM2" connect roundrect
+		(at 26.1874 -7.6501)
+		(size 2.032 14.3002)
+		(layers "B.Cu" "B.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AN1" connect roundrect
+		(at 23.0124 -7.6501)
+		(size 2.032 14.3002)
+		(layers "F.Cu" "F.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AN2" connect roundrect
+		(at 23.0124 -7.6501)
+		(size 2.032 14.3002)
+		(layers "B.Cu" "B.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AP1" connect roundrect
+		(at 19.8374 -7.6501)
+		(size 2.032 14.3002)
+		(layers "F.Cu" "F.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AP2" connect roundrect
+		(at 19.8374 -7.6501)
+		(size 2.032 14.3002)
+		(layers "B.Cu" "B.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AR1" connect roundrect
+		(at 16.6624 -7.6501)
+		(size 2.032 14.3002)
+		(layers "F.Cu" "F.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AR2" connect roundrect
+		(at 16.6624 -7.6501)
+		(size 2.032 14.3002)
+		(layers "B.Cu" "B.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AS1" connect roundrect
+		(at 13.4874 -7.6501)
+		(size 2.032 14.3002)
+		(layers "F.Cu" "F.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AS2" connect roundrect
+		(at 13.4874 -7.6501)
+		(size 2.032 14.3002)
+		(layers "B.Cu" "B.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AT1" connect roundrect
+		(at 10.3124 -7.6501)
+		(size 2.032 14.3002)
+		(layers "F.Cu" "F.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AT2" connect roundrect
+		(at 10.3124 -7.6501)
+		(size 2.032 14.3002)
+		(layers "B.Cu" "B.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AU1" connect roundrect
+		(at 7.1374 -7.6501)
+		(size 2.032 14.3002)
+		(layers "F.Cu" "F.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AU2" connect roundrect
+		(at 7.1374 -7.6501)
+		(size 2.032 14.3002)
+		(layers "B.Cu" "B.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AV1" connect roundrect
+		(at 3.9624 -7.6501)
+		(size 2.032 14.3002)
+		(layers "F.Cu" "F.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "AV2" connect roundrect
+		(at 3.9624 -7.6501)
+		(size 2.032 14.3002)
+		(layers "B.Cu" "B.Mask")
+		(roundrect_rratio 0.2)
+	)
+	(pad "H" thru_hole circle
+		(at 5.5626 -120.65)
+		(size 5.7912 5.7912)
+		(drill 3.2512)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+	)
+	(pad "H" thru_hole circle
+		(at 56.3626 -120.65)
+		(size 5.7912 5.7912)
+		(drill 3.2512)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+	)
+	(embedded_fonts no)
+)
